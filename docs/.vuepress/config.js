@@ -13,7 +13,7 @@ module.exports = {
 		},
 	},
 	// 打包后的目录,所取的为默认字符串
-	dest: '.vuepress/dist',
+	dest: 'dist',
 	// 主题配置
 	themeConfig: {
 		nav: [
@@ -46,7 +46,7 @@ module.exports = {
 			},
 			{
 				title: '基础学习',
-				path: '/docs/js_frame/basic.md',
+				path: '../js_frame/basic.md',
 				collapsable: false, // 不折叠
 				children: [],
 			},
@@ -56,4 +56,8 @@ module.exports = {
 		// 上次更新的字体
 		lastUpdated: '上次更新',
 	},
+	plugins: [
+		'@vuepress/active-header-links',
+		'@vuepress/back-to-top',
+	],
 };
