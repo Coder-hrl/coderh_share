@@ -1,8 +1,14 @@
 ---
-title: 学前必读
-author: Coderh
-date: '2021-12-12'
+home: true
+# heroImage: /home.png
+actionText: Get Started →
+actionLink: /JavaScript/
+features:
+  - title: day day up
+    details: 记录每一天的进步, 一分耕耘，一分收获.
+  - title: Coderh
+    details: 专注 Node.js 技术栈分享，从 前端 到 Node.js 再到 后端数据库，祝您成为优秀的高级 Node.js 全栈工程师
+  - title: koala
+    details: 一个有趣的且乐于分享的人。座右铭：今天未完成的，明天更不会完成。
+# footer: MIT Licensed | Copyright © 2018-present Evan You
 ---
-
-1. 所写内容经过个人学习和工作之后所写
-2. 所写内容是经过个人经过查证之后所写
