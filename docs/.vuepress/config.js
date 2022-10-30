@@ -15,7 +15,7 @@ module.exports = {
   dest: 'dist',
   head: [
     // 定义一些标签，会保存在 HTML 的<head>中
-    ['link', { rel: 'icon', href: './public/favicon.ico' }],
+    ['link', { rel: 'icon', href: '/favicon.ico' }],
     // ['meta', { name: 'theme-color', content: '#3eaf7c' }],
   ],
   markdown: {
