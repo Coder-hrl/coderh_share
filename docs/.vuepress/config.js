@@ -13,11 +13,11 @@ module.exports = {
   },
   // 打包后的目录,所取的为默认字符串
   dest: 'dist',
-  // head: [
-  //   // 定义一些标签，会保存在 HTML 的<head>中
-  //   ['link', { rel: 'icon', href: '/logo.png' }],
-  //   ['meta', { name: 'theme-color', content: '#3eaf7c' }],
-  // ],
+  head: [
+    // 定义一些标签，会保存在 HTML 的<head>中
+    ['link', { rel: 'icon', href: './public/favicon.ico' }],
+    // ['meta', { name: 'theme-color', content: '#3eaf7c' }],
+  ],
   markdown: {
     lineNumbers: true, // 让代码块显示行号
     extractHeaders: ['h2', 'h3'], // 从 MarkDown 文档中提取哪几级标题，保存到 this.$page.headers
