@@ -1,5 +1,9 @@
+```html
+<div id="app"></div>
+//view
+```
+
 ```js
-;<div id="app"></div> //view
 const app = Vue.createApp({}) // model
 app.mount('#app')
 ```
@@ -12,8 +16,11 @@ Vue.createApp({}).mount('#app')
 
 链式结构
 
+```html
+<script type="x-template" id="why"></script>
+```
+
 ```js
-;<script type="x-template" id="why"></script>
 Vue.createApp({
   template: '#why',
 })
@@ -145,8 +152,8 @@ watch: { name:{handler:function(newValue,oldValue){},deep:true}}
 
 created(){
   const unwatch = this.$watch('name', function(newValue,oldValue){
-    console.log(newValue,oldValue);
-  },{deep:true, immediate:true});
+    console.log(newValue,oldValue)
+  },{deep:true, immediate:true})
   // 调用 unwatch() 来取消监听
 }
 ```
@@ -209,7 +216,7 @@ const app = {
   - 可以禁用掉,通过在 inheritAttrs:false
 - 也可以在子组件的非 props 属性上传入$attrs.class,示例
 
-```html
+```vue
 <!-- 父 -->
 <!--以下可以在给不同的组件添加样式的时候使用 -->
 <show-msg class="李白"></show-msg>
@@ -249,7 +256,6 @@ const app = {
   - 在需要使用`常用在事件位置`的地方添加一个 emitter.emit("type 类型",传递的消息,可以用 this)
   - 后在需要使用的地方在 created()的时候使用,emitter.on("type 类型",info => info)
   - 如果需要全部清空 `emitter.all.clear()`,单个取消监听使用 `emitter.off("type 类型",info)`参考定时器取消
-    /**\*\***\*\***\*\***\***\*\***\*\***\*\*** 以上都是在父子组件,或爷孙组件的使用**\*\***\*\*\*\***\*\***\***\*\***\*\*\*\***\*\***/
 
 `slot`插槽
 
@@ -267,7 +273,7 @@ const app = {
 
 ```html
 <!-- 子 -->
-<template v-for="(item,index) in items" :key="item">
+<template v-for="(item, index) in items" :key="item">
   <slot :item="item" :index="index"></slot>
 </template>
 <!-- 父 -->
@@ -289,12 +295,12 @@ const app = {
 ```html
 <!-- 一般是用v-bind:is="",很少直接使用is="默认值" -->
 <component :is=""></component>
-<!--可以走三元 一>
-<!-- is 里面是组件的动态值,可以是由app.component('',{})注册的组件,
-另外一种就是由组件内components注册的组件 -->
+<!-- 可以走三元
+    is 里面是组件的动态值,可以是由app.component('',{})注册的组件,
+    另外一种就是由组件内components注册的组件 -->
 ```
 
-keep-alive 缓存数据,提高性能,保存状态,在需要缓存的地方最外面加上<keep-alive>
+keep-alive 缓存数据,提高性能,保存状态,在需要缓存的地方最外面加上`<keep-alive>`
 `include` 支持字符串,正则和数组,会被缓存,检验的是注册后的组件名
 `exclude` 不会被缓存
 `max` 不会被使用缓存的组件
@@ -321,10 +327,13 @@ const AsyncCategory = defineAsyncComponent({
 ```
 
 `Suspense` 异步组件 新增 不要用到生产环境中,都是为了分包,提高下载速度
+
+```html
 <suspense>
-<template #default></template>
-<template #fallback></template>
+  <template #default></template>
+  <template #fallback></template>
 </suspense>
+```
 
 `Ref` 对组件进行操作
 相当于原生中 id ,对于`原生属性`,他会去获取`原生属性本身`
@@ -341,11 +350,10 @@ const AsyncCategory = defineAsyncComponent({
 beforeCreate => created => beforemount => mounted => beforeUpdate => updated => beforeUnmount => unmounted 可以在 beforeUnmouted 里面写入取消监听.
 activated(活跃的)=> deactivated(不活跃的),在 keeep-alive 里面是存在的
 
-```
-组件的v-model`
-先绑定一个默认的属性,是 v3 `内置了一个 props 和 emits `的实现过程
-都需要在子组件里面写入 `props 为 modelValue` 和 `emits 为 update:modelValue` 定义
-目的是省去`冗余代码`,让`代码更加清晰
+```vue
+组件的v-model` 先绑定一个默认的属性,是 v3 `内置了一个 props 和 emits `的实现过程
+都需要在子组件里面写入 `props 为 modelValue` 和 `emits 为 update:modelValue`
+定义 目的是省去`冗余代码`,让`代码更加清晰
 <!-- 默认是v-model绑定的是modelValue,如果后面有名字的话定义为props:{title:string} -->
 <!-- emits:[update:title] 前缀都是update: ?? 后面是自定义 -->
 <my-input v-model="message" v-model:title=""></my-input>
@@ -503,7 +511,7 @@ mulation 里面定义了很多函数
 commit `提交` `mulation` 对 `state` 进行更新 _mulation 不允许 异步请求_
 增加了一个 fragment,也可以使用模块化`module`
 
-采用的是SSOT单一数据源.`single-source of Truth`
+采用的是 SSOT 单一数据源.`single-source of Truth`
 
 能让我们快速的在`单一数据树`上找到数据进行开发
 
@@ -515,9 +523,7 @@ computed:{
 }
 ```
 
-
-
-mapState两种写法,一种是数组,一种是对象
+mapState 两种写法,一种是数组,一种是对象
 
 ```js
 ...mapState(['couter','name'])
@@ -552,19 +558,19 @@ import {computed} from 'vue'
 
 mapState()返回内部值都是一个个函数
 
-vuex  state  getters  mutations  module
+vuex state getters mutations module
 
-state数据流,单一数据流
+state 数据流,单一数据流
 
 `getters` 对`state`的数据进行操作转换后返回的值,对`state原数据`无影响
 
-`mutations`直接对state数据进行操作
+`mutations`直接对 state 数据进行操作
 
 都是同步函数
 
-注意！ 在mapGetters和mapState用法差不太多,他支持对象类型和数组类型
+注意！ 在 mapGetters 和 mapState 用法差不太多,他支持对象类型和数组类型
 
-mapGetters返回的也是一个函数,和mapState也是一样的
+mapGetters 返回的也是一个函数,和 mapState 也是一样的
 
 在每次修改数据的时候,都要执行`提交commit操作`
 
@@ -581,73 +587,73 @@ this.$store.commit({
 })
 ```
 
-使用mutation-types.js 定义常量 ,后在[常量] ()
+使用 mutation-types.js 定义常量 ,后在[常量] ()
 
-注意mapMutations是写在methods里面的,因为mapMutations是直接写在方法里面的,所以在setup componentsAPI中就不需要这么麻烦了 直接使用...mapMutations
+注意 mapMutations 是写在 methods 里面的,因为 mapMutations 是直接写在方法里面的,所以在 setup componentsAPI 中就不需要这么麻烦了 直接使用...mapMutations
 
 ```js
-const mapMutation = mapMutation(['',''])
-return{
-  ...mapMutation
+const mapMutation = mapMutation(['', ''])
+return {
+  ...mapMutation,
 }
 ```
 
-因为mutation不支持异步操作,所以
+因为 mutation 不支持异步操作,所以
 
-- 在组件内部created生命周期时,使用异步操作
-- 使用action层,可以再action层完成异步操作
+- 在组件内部 created 生命周期时,使用异步操作
+- 使用 action 层,可以再 action 层完成异步操作
 
-所以在组件和mutation之间增加了一层actions
+所以在组件和 mutation 之间增加了一层 actions
 
 (context,payload) 默认传回鼠标事件
 
-actions是提交mutation,但是可以在actions里面使用异步操作
+actions 是提交 mutation,但是可以在 actions 里面使用异步操作
 
-可以将一些需要提前请求的异步操作,转换成actions里面定义的函数
+可以将一些需要提前请求的异步操作,转换成 actions 里面定义的函数
 
-可以使用promise的方法解决异步完成后才进行操作
+可以使用 promise 的方法解决异步完成后才进行操作
 
 ```js
-actions:{
+actions: {
   //放函数
-  increment(context,payload)
+  increment(context, payload)
   //可以使用context.commit('mutation')
   //调用action 提交mutation, 使用mutation改变state
 }
 ```
 
-action的分发操作, context `commit` ,`dispatch`,getters
+action 的分发操作, context `commit` ,`dispatch`,getters
 
 `mapActions`的操作
 
 #### Modules
 
-模块化开发,每个模块里面都有属于自己的state，getter，mutation
+模块化开发,每个模块里面都有属于自己的 state，getter，mutation
 
 ```js
-$store.commit('home/space')//大概就是这种类型的数据
+$store.commit('home/space') //大概就是这种类型的数据
 ```
 
-在mutation和action里面都需要使用...mapMutation
+在 mutation 和 action 里面都需要使用...mapMutation
 
-```js 
-import {createNamespacedHelpers} from 'vuex'
+```js
+import { createNamespacedHelpers } from 'vuex'
 ```
 
 直接引用`命名空间的vuex`
 
 ### vue.config.js
 
-改变vue的官方设置,以便来更好的开发
+改变 vue 的官方设置,以便来更好的开发
 
 可以改变
 
 ```js
-module.exports=[]
+module.exports = []
 ```
 
 #### nextTick
 
-将回调退到下一次dom更新执行,在下一遍dom更新执行之后会立刻执行回调
+将回调退到下一次 dom 更新执行,在下一遍 dom 更新执行之后会立刻执行回调
 
-promise.resolve.then() 微任务   微任务最后是nextTick任务
+promise.resolve.then() 微任务 微任务最后是 nextTick 任务
