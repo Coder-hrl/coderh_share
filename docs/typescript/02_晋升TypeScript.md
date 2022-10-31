@@ -1,22 +1,22 @@
-##### TypeScript的好处
+## TypeScript 的好处
 
-1. 编译时静态类型检测  可以在运行前,发现大量可以避免的错误,省时省力
+1. 编译时静态类型检测 可以在运行前,发现大量可以避免的错误,省时省力
 2. 自动提示 变量类型,变量属性可以快速的进行提示
-3. 引入了泛型  具备了高可扩展性的这个巨大优势,同时也有类型安全检测的优势
-4. 强大的d.ts声明文件  声明文件就像一本书的目录一样
-5. 轻松编译成js文件
-6. 灵活性高 也提供了any和as any断言
+3. 引入了泛型 具备了高可扩展性的这个巨大优势,同时也有类型安全检测的优势
+4. 强大的 d.ts 声明文件 声明文件就像一本书的目录一样
+5. 轻松编译成 js 文件
+6. 灵活性高 也提供了 any 和 as any 断言
 
 ##### 报错分析
 
 ```ts
-let obj ={ username:"",age:23},
- //如果此处使用 let 的话就会报错
+let obj = { username: '', age: 23 };
+//如果此处使用 let 的话就会报错
 ```
 
-##### 什么时候使用never
+##### 什么时候使用 never
 
-使用never为了避免**出现未来扩展新的类没有对应类型的实现**,目的就是为了写出类型绝对安全的代码
+使用 never 为了避免**出现未来扩展新的类没有对应类型的实现**,目的就是为了写出类型绝对安全的代码
 
 ##### 什么时候使用枚举类型呢?
 
@@ -25,7 +25,7 @@ let obj ={ username:"",age:23},
 都是固定的常量,可以一个个的枚举出来
 
 ```ts
-enum Week { }
+enum Week {}
 ```
 
 会当做一个数据类型,枚举类型是可以取到的
@@ -33,7 +33,7 @@ enum Week { }
 字符串枚举和对象数据枚举
 
 ```js
-Week.Monday
+Week.Monday;
 ```
 
 枚举取值的方式和枚举底层
@@ -43,10 +43,10 @@ Week.Monday
 ```js
 var Direction;
 (function (Direction) {
-    Direction["Up"] = "Up";
-    Direction["Down"] = "Down";
-    Direction["left"] = "Left";
-    Direction["Right"] = "Right";
+	Direction['Up'] = 'Up';
+	Direction['Down'] = 'Down';
+	Direction['left'] = 'Left';
+	Direction['Right'] = 'Right';
 })(Direction || (Direction = {}));
 ```
 

@@ -1,23 +1,24 @@
-##### 1. 为什么thread-loader会拖慢打包的过程
+## webpack 中的配置
 
-通过查询之后,thread-loader需放置到其他loader之前,会开启一个独立的worker池中运行,
+##### 1. 为什么 thread-loader 会拖慢打包的过程
 
-1. 每一个worker都是一个独立的node.js进程,开销大概600ms,同时限制进程的数据交换
-2. **请注意仅在耗时的操作中使用此loader**
+通过查询之后,thread-loader 需放置到其他 loader 之前,会开启一个独立的 worker 池中运行,
 
-##### 2. 在css文件中通过import引入之后cssloader并没有经过postcss-loader处理
+1. 每一个 worker 都是一个独立的 node.js 进程,开销大概 600ms,同时限制进程的数据交换
+2. **请注意仅在耗时的操作中使用此 loader**
 
-通过在css-loader设置的使用
+##### 2. 在 css 文件中通过 import 引入之后 cssloader 并没有经过 postcss-loader 处理
 
-ImportLoaders 数量是指需要被处理的loader
+通过在 css-loader 设置的使用
+
+ImportLoaders 数量是指需要被处理的 loader
 
 ```js
 {loader:"css-loader",options:{ importLoaders:1 }}
 ```
 
-##### 3. 在css文件中使用@import url() 这种方式并不能引入模块依赖图中
+##### 3. 在 css 文件中使用@import url() 这种方式并不能引入模块依赖图中
 
 使用 `@import ""` 的方式
 
-或者在main文件引入 `import("")`
-
+或者在 main 文件引入 `import("")`

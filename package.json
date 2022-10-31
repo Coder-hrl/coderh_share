@@ -13,6 +13,7 @@
 	"devDependencies": {
 		"@vuepress/plugin-active-header-links": "^1.9.7",
 		"@vuepress/plugin-medium-zoom": "^2.0.0-beta.53",
+		"vuepress-plugin-auto-sidebar": "^2.3.2",
 		"vuepress": "^1.9.7",
 		"vuepress-theme-reco": "^1.6.16"
 	}

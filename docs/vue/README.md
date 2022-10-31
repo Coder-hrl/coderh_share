@@ -1,29 +1,34 @@
+## Vue
+
 ```html
 <div id="app"></div>
 //view
 ```
 
 ```js
-const app = Vue.createApp({}) // model
-app.mount('#app')
+const app = Vue.createApp({}); // model
+app.mount('#app');
 ```
 
 CDN 引用的方式,引用 Vue 源代码.
 
 ```js
-Vue.createApp({}).mount('#app')
+Vue.createApp({}).mount('#app');
 ```
 
 链式结构
 
 ```html
-<script type="x-template" id="why"></script>
+<script
+	type="x-template"
+	id="why"
+></script>
 ```
 
 ```js
 Vue.createApp({
-  template: '#why',
-})
+	template: '#why',
+});
 ```
 
 有上述写法,<template></template>是不会被浏览器渲染的.
@@ -59,31 +64,31 @@ v-bind 语法糖 为: `动态绑定属性`, 让 src 或 class 等属性都要动
 
 ```html
 <div
-  :class="{active:boolean,'title':boolean}"
-  style="width:200px"
-  :style="{width:'200px',color:'red'}"
+	:class="{active:boolean,'title':boolean}"
+	style="width:200px"
+	:style="{width:'200px',color:'red'}"
 >
-  <!-- 上面class的对象写法,''可以加也可以不加. -->
-  <!-- 如果想让代码更加清晰,还可以定义在data里面
+	<!-- 上面class的对象写法,''可以加也可以不加. -->
+	<!-- 如果想让代码更加清晰,还可以定义在data里面
   <div :class="classObj"></div>
   data(){return{ classObj: {active:boolean,'title':boolean}}}
    -->
-  <!--  三元表达式       对象写法 -->
-  <!-- 还可以使用数组类型,如["class","",isActive? ?:? ,{}] -->
-  <!-- 通过动态给元素添加属性,可以提高用户体验. -->
+	<!--  三元表达式       对象写法 -->
+	<!-- 还可以使用数组类型,如["class","",isActive? ?:? ,{}] -->
+	<!-- 通过动态给元素添加属性,可以提高用户体验. -->
 
-  <!-- 用v-bind:style里 属性最好也加一个''或者使用驼峰命名法,
+	<!-- 用v-bind:style里 属性最好也加一个''或者使用驼峰命名法,
   属性值必须要加 '',数组里面放两个对象,两个对象后面会合并  示例: [{},{}]
   动态绑定属性名称         属性名称也可能是不固定的<div :[name]="value"></div>
   data(){return{name:'abc',value:'s'}}
   -->
-  <!-- <div v-bind="info"></div> 结果是<div height:'1.88',width:'1.2'> </div>
+	<!-- <div v-bind="info"></div> 结果是<div height:'1.88',width:'1.2'> </div>
   适合给元素上添加很多自定义属性,绑定一个全是attribute的属性
   data(){return{info:{height:'1.88',width:'1.2'}}} -->
 </div>
 ```
 
-在 vue2 中,<template></template> 必须要`有且只有一个根元素`<div></div>.
+在 vue2 中,`<template></template> 必须要`有且只有一个根元素`<div></div>`.
 但是在 vue3 中是`允许多个根元素并存`的.
 
 v-on 交互事件,`绑定事件`,语法糖为`@`,所绑定的方法定义在 `methods:{}`里面.
@@ -163,7 +168,10 @@ v-model `双向数据绑定`
 原理等同于
 
 ```html
-<input :value="search" @input="search = $event.target.value" />
+<input
+	:value="search"
+	@input="search = $event.target.value"
+/>
 ```
 
 `v-model.lazy` _懒绑定_ 等敲回车的时候才会处理转换为 change 数据绑定
@@ -176,11 +184,11 @@ v-model `双向数据绑定`
 `组件化`是一种抽象,我们可以开发出一个个`独立可复用`的组件来构成我们的页面
 
 ```js
-;<template id="component-a"></template>
+<template id='component-a'></template>;
 app.component('component-a', {
-  template: ``,
-  template: '#component-a',
-})
+	template: ``,
+	template: '#component-a',
+});
 ```
 
 上述所讲的东西都是可以在组件中使用的
@@ -188,11 +196,11 @@ app.component('component-a', {
 
 ```js
 const app = {
-  components: {
-    //要以键值对的形式,平常的是直接用的对象简化
-    // 如 MyComponent :  MyComponent,可以简化为Mycomponent
-  },
-}
+	components: {
+		//要以键值对的形式,平常的是直接用的对象简化
+		// 如 MyComponent :  MyComponent,可以简化为Mycomponent
+	},
+};
 ```
 
 `组件化开发`
@@ -273,15 +281,21 @@ const app = {
 
 ```html
 <!-- 子 -->
-<template v-for="(item, index) in items" :key="item">
-  <slot :item="item" :index="index"></slot>
+<template
+	v-for="(item, index) in items"
+	:key="item"
+>
+	<slot
+		:item="item"
+		:index="index"
+	></slot>
 </template>
 <!-- 父 -->
 <nav-bar>
-  <!-- 注意slotProps是固定的,不可改的. 但是可以通过对象解构来解决这个问题 -->
-  <template #default="slotProps">
-    <button>{{slotProps.item}}</button>
-  </template>
+	<!-- 注意slotProps是固定的,不可改的. 但是可以通过对象解构来解决这个问题 -->
+	<template #default="slotProps">
+		<button>{{slotProps.item}}</button>
+	</template>
 </nav-bar>
 <!-- 独占默认插槽缩写,直接在组件上使用这个v-slot=""  多个插槽存在会报错-->
 <!-- 多个插槽需要使用<template #default=""></template> -->
@@ -330,8 +344,8 @@ const AsyncCategory = defineAsyncComponent({
 
 ```html
 <suspense>
-  <template #default></template>
-  <template #fallback></template>
+	<template #default></template>
+	<template #fallback></template>
 </suspense>
 ```
 
@@ -351,25 +365,32 @@ beforeCreate => created => beforemount => mounted => beforeUpdate => updated => 
 activated(活跃的)=> deactivated(不活跃的),在 keeep-alive 里面是存在的
 
 ```vue
-组件的v-model` 先绑定一个默认的属性,是 v3 `内置了一个 props 和 emits `的实现过程
-都需要在子组件里面写入 `props 为 modelValue` 和 `emits 为 update:modelValue`
-定义 目的是省去`冗余代码`,让`代码更加清晰
+组件的v-model` 先绑定一个默认的属性,是
+v3 `内置了一个 props 和 emits
+`的实现过程 都需要在子组件里面写入
+`props 为 modelValue` 和 `emits 为
+update:modelValue` 定义
+目的是省去`冗余代码`,让`代码更加清晰
 <!-- 默认是v-model绑定的是modelValue,如果后面有名字的话定义为props:{title:string} -->
 <!-- emits:[update:title] 前缀都是update: ?? 后面是自定义 -->
-<my-input v-model="message" v-model:title=""></my-input>
+<my-input
+	v-model="message"
+	v-model:title=""
+></my-input>
 <!-- 等同于 -->
 <my-input
-  modelValue="message"
-  @update:model-value="message = $event"
+	modelValue="message"
+	@update:model-value="message = $event"
 ></my-input>
 
 <!--需要在子组件的props里面定义一个modelValue的属性 -->
-props:{modelValue:String} ,emits:[@update:modelValue]
+props:{modelValue:String}
+,emits:[@update:modelValue]
 ```
 
 `过渡`
 `显示`和`消失时的动画`
-使用 <transition name="自定义名称用$代替" type="谁时间长用哪个" :duration="数值类型会覆盖下面" mode="in-out" appear></transition>来包裹需要加动画的组件(只有一个)
+使用 `<transition name="自定义名称用$代替" type="谁时间长用哪个" :duration="数值类型会覆盖下面" mode="in-out" appear></transition>`来包裹需要加动画的组件(只有一个)
 `mode` in-out out-in 在两个元素相互切换时使用(v-if v-else)时
 `appear` 默认有动画效果,或设置为:appear = "true"
 他会在显示和隐藏的时候给元素添加一个类名,
@@ -388,7 +409,7 @@ $-enter-active 定义 transition 属性
 直接在页面中使用 enter-active-class = "" leave-active-class = ""
 如果要使用 js 来执行动画的话,要将:css="true",不再检测 css,性能会变高
 与 gsap 库 使用 js 代码
-<transition-group tag="ul" name="自定义$"></transition-group>渲染一个列表
+`<transition-group tag="ul" name="自定义$"></transition-group>` 渲染一个列表
 内部元素需要唯一的一个 key,他针对的是元素的类
 在 css 中用的是$-move{transition:transform}
 
@@ -452,8 +473,10 @@ components 认识,
 
 ```js
 const stop = watchEffect(() => {
-  console.log('只要在里面写入需要监听的属性,都会被监听')
-})
+	console.log(
+		'只要在里面写入需要监听的属性,都会被监听',
+	);
+});
 // 使用stop() 停止侦听
 ```
 
@@ -493,7 +516,7 @@ vue3 高级语法补充`
 基于路由和组件,将访问路径和组件联系在一起
 可以在 routes 里面设置{path:"/",redirect:''}
 
-<router-link>to 默认调用的 push() 压入栈</router-link>
+`<router-link>to 默认调用的 push() 压入栈</router-link>`
 
 在 setup 里面是没有 this 的所以要使用`useRoute()`
 需要在 vue-router 引入 import {useRoute()} from 'vue-router'
@@ -592,10 +615,13 @@ this.$store.commit({
 注意 mapMutations 是写在 methods 里面的,因为 mapMutations 是直接写在方法里面的,所以在 setup componentsAPI 中就不需要这么麻烦了 直接使用...mapMutations
 
 ```js
-const mapMutation = mapMutation(['', ''])
+const mapMutation = mapMutation([
+	'',
+	'',
+]);
 return {
-  ...mapMutation,
-}
+	...mapMutation,
+};
 ```
 
 因为 mutation 不支持异步操作,所以
@@ -615,10 +641,10 @@ actions 是提交 mutation,但是可以在 actions 里面使用异步操作
 
 ```js
 actions: {
-  //放函数
-  increment(context, payload)
-  //可以使用context.commit('mutation')
-  //调用action 提交mutation, 使用mutation改变state
+	//放函数
+	increment(context, payload);
+	//可以使用context.commit('mutation')
+	//调用action 提交mutation, 使用mutation改变state
 }
 ```
 
@@ -631,13 +657,13 @@ action 的分发操作, context `commit` ,`dispatch`,getters
 模块化开发,每个模块里面都有属于自己的 state，getter，mutation
 
 ```js
-$store.commit('home/space') //大概就是这种类型的数据
+$store.commit('home/space'); //大概就是这种类型的数据
 ```
 
 在 mutation 和 action 里面都需要使用...mapMutation
 
 ```js
-import { createNamespacedHelpers } from 'vuex'
+import { createNamespacedHelpers } from 'vuex';
 ```
 
 直接引用`命名空间的vuex`
@@ -649,7 +675,7 @@ import { createNamespacedHelpers } from 'vuex'
 可以改变
 
 ```js
-module.exports = []
+module.exports = [];
 ```
 
 #### nextTick

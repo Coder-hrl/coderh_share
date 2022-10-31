@@ -1,62 +1,54 @@
-> 
->
-> 
->
-> 
->
-> 
->
-> 
->
+## Redux 学习
+
 > -因为我们需要控制和追踪我们所需要的状态,至于状态怎么管理,则需要看我们自己如何进行控制,
 >
 > 因为我们需要管理越来越多的状态,我们需要获取到发生什么变化,为什么发生变化
 >
-> 核心理念 1. 数据可追踪可预测 ,2. 数据通过action统一处理 
+> 核心理念 1. 数据可追踪可预测 ,2. 数据通过 action 统一处理
 >
-> 3. reducer逻辑数据处理
+> 3. reducer 逻辑数据处理
 
-redux是JavaScript的状态容器,提供了可预测的状态管理
+redux 是 JavaScript 的状态容器,提供了可预测的状态管理
 
-##### redux非常小 加上依赖包只有4kb
+##### redux 非常小 加上依赖包只有 4kb
 
 > 核心理念非常的简单,比如,我们需要追踪和预设那些操作,可以方便我们进行调试
 
-1. 强制派发action,可以清楚的知道数据发生的改变,
+1. 强制派发 action,可以清楚的知道数据发生的改变,
 
-2. 我们会通过action来进行改变数据的改变
+2. 我们会通过 action 来进行改变数据的改变
 
-3. 使用reducer来处理action,返回一个新的state
+3. 使用 reducer 来处理 action,返回一个新的 state
 
-> 传入一个state,还要传入一个action,大量使用展开运算符
+> 传入一个 state,还要传入一个 action,大量使用展开运算符
 >
-> 将传入的state和action联合在一起重新返回一个新的对象
+> 将传入的 state 和 action 联合在一起重新返回一个新的对象
 
-###### 单一数据源,只创建一个store,
+###### 单一数据源,只创建一个 store,
 
 > 1. 最好只要使用一个单一数据源
-> 1. 不能直接去修改state
+> 1. 不能直接去修改 state
 > 1. 保证所有对数据的修改都是集中处理的,按照顺序严格执行
 
-我们可以将一个reducer 拆分成很多reducer,但是每个reducer必须是一个纯函数,不能有任何副作用
+我们可以将一个 reducer 拆分成很多 reducer,但是每个 reducer 必须是一个纯函数,不能有任何副作用
 
-dispatch  subscribe
+dispatch subscribe
 
 1. 分为 actionCreaters 创建
 2. 分为 constains 声明变量
 3. 分为 主文件
 4. 分为 reducer 来进行返回操作
 
-可以通过`dispatch派发action`,然后**调用reducer 使用action** 然后修改state文件
+可以通过`dispatch派发action`,然后**调用 reducer 使用 action** 然后修改 state 文件
 
-通过subscribe来进行订阅,而且一定要在派发前进行订阅
+通过 subscribe 来进行订阅,而且一定要在派发前进行订阅
 
-使用返回值取消订阅,使用返回值等于store.dispatch()，然后执行返回值
+使用返回值取消订阅,使用返回值等于 store.dispatch()，然后执行返回值
 
-> store监听 使用store.subsrcibe(),取消订阅则使用调用返回的函数就可以了
+> store 监听 使用 store.subsrcibe(),取消订阅则使用调用返回的函数就可以了
 
 ##### 将重复的代码进行共享代码
 
-将自己所写的代码进行二次封装,将About和Home的代码进行抽分
+将自己所写的代码进行二次封装,将 About 和 Home 的代码进行抽分
 
 > 遇到问题先分层,一层不够 分两层
