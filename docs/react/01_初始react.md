@@ -91,9 +91,9 @@ function render(){
 render()
 ```
 
-##### 组件化实现
+##### 类组件化实现
 
-将自己所写的代码放到class类中,进行封装
+将自己所写的代码放到class类中,进行封装,需要super继承,后声明初始值this.state来进行实现
 
 ```js
  class App extends React.Component {
@@ -138,12 +138,32 @@ this.setState({
 })
 ```
 
-在类中render函数需要使用 
+注意这个setState在进行操作对象等复杂属性时,因为引用地址的存在,React是不清楚数据是否发生了改变,需要来**进行浅拷贝来告诉React已经发生了改变**
 
-```js
-render(){
-  // 注意这里的return是(),
-  return()
-}
+#### Jsx语言在通过babel转换之后是默认添加“use static”开启严格模式,所有的this是被转换为undefined的
+
+#### 为什么类中的方法this是指向undefined,因为函数的this是动态的,在调用时才会确认this,对象调用是调用隐式绑定的this的
+
+注意在React渲染数组中,可以使用数组的map返回新数组的方法来进行渲染,但是我还是希望将大层面的数据处理和HTML渲染分开,保持上方数据处理,下方视图尽量只是用来渲染.
+
+### JSX语法介绍和使用
+
+> 是React中新型编写HTML的一种方式,需要通过babel来进行转换,使用React.createElemnt的方式来创建元素,其实就是xml语法的方式
+>
+> 是嵌入到js中的一种语法方式
+
+```jsx
+const apple =<div>{}</div>
 ```
 
+1. 在事件绑定中使用on外加驼峰的方式声明事件的方式
+2. 将class在React中使用className在编写时推荐,当然class在jsx中是会识别的,会警告!
+3. 在jsx结构中,只能有一个根元素,可以使用Fragment或者使用<></>的方式
+4. 在展示boolean,undefined和null时,React在界面上展示为空,需要手动转换为字符串来进行展示
+5. Object类型,不能直接放到页面上展示,需要将里面的属性转换为number和string的方式来展示
+6. 可以插入相对应的表达式来进行展示,在日常开发中三元表达式比较多,是返回表达式的结果
+7. jsx中绑定属性,关于属性是如何绑定的,我们可以使用{}的方式来统一进行数据绑定
+
+#### 什么情况下使用<></> 什么情况下 使用Fragment ,什么情况下使用div呢
+
+经实践操作之后,添加key时,使用fragement,什么都不操作,使用<></>,在添加className和id等属性和事件时,是需要使用div的,因为Fragment中没有这个属性
