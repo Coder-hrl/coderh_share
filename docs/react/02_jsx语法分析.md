@@ -102,10 +102,27 @@ render(){
 
 ##### 也可以在 render 函数到 return 中间使用结构或者其他运算
 
-##### react jsx 的本质是通过 React.createElement,然后传入 props 和其他属性,使用的是 js 创建 createElement 的方式
+##### react中jsx 的本质原理是通过 React.createElement,然后在其中再传入 props 和其他属性,使用的是 js 创建 createElement 的方式
 
 ```js
 React.createElement(type, config);
 // 以键值对的形式存储
 // chidren 以children数组的方式进行存储
+// 都会使用React.createElement的方法来创建一个元素
 ```
+
+所有的jsx都会被转换为React.createElement的函数
+
+`type config 和children`三种属性,type是指创建元素的类型(span,div,p等),config是指创建元素的属性(classname,title),children是指创建的元素值
+
+会创建出来一个ReactElement对象,通过树的形式,再构成虚拟DOM
+
+先是转换为虚拟Dom,多平台适用也是从这里出现的,`可以渲染成Pc端,也可以渲染成App和Ios端React-Native的`
+
+Virtual Dom UI`以一种虚拟化,或者说理想化的形式保存在内存中`,在真正渲染的时候,通过ReactDom render 同步起来
+
+##### 让React页面更新的几种方式
+
+1. 使用useState
+2. 父传子props发生改变
+3. 子传父emit事件的发生
