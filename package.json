@@ -1,7 +1,7 @@
 {
   "name": "coderh_share",
   "version": "1.0.0",
-  "description": "",
+  "description": "a personal share acknowledge",
   "main": "index.js",
   "scripts": {
     "start": "vuepress dev docs",

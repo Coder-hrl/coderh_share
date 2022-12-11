@@ -83,9 +83,17 @@ const [person, setPerson] = useState({
 
 > 第三个参数是 需要被监听的参数,指的是被监督的参数
 >
-> 如果什么也没有传入的话,则每次更新不会重新执行
+> 如果什么也没有传入的话,则初次更新渲染之后每次更新不会重新执行,
+>
+> 如果没有deps的话,则每次更新都会执行
 
 ##### 使用 useContext 的使用
+
+`特殊场景所用到的hook`、`性能优化的hook`和`自定义hook`,React18的hook.
+
+使用函数式组件和hooks  useState和useEffect是最重要的,还有一个万金油useRef,对于react-redux则是useSelector,useDispatch,和react-router useRouter,和useRoute.
+
+> 注意!!! useContext 和useSelector都是一旦数据发生改变,就将用到的地方都进行一遍更新
 
 之前的做法
 
@@ -105,9 +113,19 @@ const user = useContext(userContext)
 // 在这个里面可以拿到父级共享的context作用域中共享的value
 ```
 
-##### useReducer
+##### useReducer (了解)
 
-useReducer 是 useState 的替代方案
+useReducer 可以是 useState 的替代方案   tookit
+
+userReducer + useContext 类似于redux
+
+> 如果state的处理逻辑比较复杂,可以使用useReducer用来替代
+>
+> 使用dispatch来进行多种操作,原理也就是将对state的不同操作封装成函数
+>
+> 本质上与编写函数,来动态传入值效果一样,只是可读性比state稍微好了一些
+>
+> 用来管理一些比较复杂的数据时候使用,对复杂数据操作的时候
 
 ```js
 // useReducer的使用
@@ -116,19 +134,45 @@ const [state, dispatch] = useReducer();
 // 不能共享数据的,只能共享这个函数,不如useContext()
 ```
 
-##### useCallback
+##### useCallback   (性能优化)
 
-> 因为每一次的刷新,都是会重新执行一次函数,根据依赖值不变,直接返回函数这个特点,我们可以进行数组,根据依赖值,使用**memo 函数组件**
+> 因为每一次的刷新,组件内部都是会重新执行一次函数,根据如果依赖值不变,直接返回函数结果这个特点,我们可以进行数组,根据依赖值,使用**memo 函数组件**,useCallback需要与memo相配合使用
 >
-> 1. 组件中的函数,传递给子元素进行回调使用时,使用 useCallback 进行性能优化,而简单的不让子组件随便更新渲染,使用 memo 就可以
+> 前置
+>
+> 1. 组件更新,函数会重新渲染,props和state更新,组件重新会发生渲染
+> 2. 子元素向父元素传递函数,或者触发父元素函数时,都会让子元素重新渲染
+>
+> 使用场景
+>
+> 1. 将一个函数传递给子组件时,最好使用useCallback进行一个优化 
+> 2. 使用useRef,让useRef.current= count,然后在setState(useRef.current+1)
+> 3. 在修改的时候使用,setState(item=>(...item,新值))
+>
+> 组件中的函数,传递给子元素这个函数时,使用 useCallback 进行性能优化,因为这个函数没有发生重新的声明,而简单的不让子组件跟随这个函数的改变重新更新渲染,使用 memo 就可以,memo针对的是props中的state值??
 
-> 实际上是进行的性能优化,传入一个回调函数,同时返回一个 memorize 记忆值
+> 实际上是进行的性能优化,传入一个回调函数,同时返回一个 memorize 记忆值,在依赖不变的话,多次调用,返回值时相同的
 >
 > ```js
 > const increment = useCallback(() => {
 > 	first; // 逻辑代码
 > }, [second]);
 > // 不同的性能优化
+> const increment =useCallback(function foo(){
+>   console.log("inrement")
+>   setCount(count + 1)
+>   // 此时传入的count是初次执行的闭包,  也就是一个闭包
+> },[])
+> //如果useCallback的依赖值不发生改变,这个函数的count永远是第一次渲染获取到的值
+> //可以用到发送网络请求吗??
+> 
+> const foo = function(name){
+>   return function(name){
+>     console.log(name)
+>   }
+> }
+> bar =foo("libai")
+> // bar已经是一个写死的函数了,无论怎么样都不会发生改变
 > ```
 >
 > second 是传入一个依赖的数组
@@ -141,7 +185,18 @@ function HYbutton(props) {
 
 ##### useMemo
 
-> 使用的方法和 useEffect 差不多,同时也需要传入一个依赖项,
+> useCallback和useMemo之间的区别,useCallback对于函数传递给子组件时进行性能优化,useMemo也可以对子组件传递props进行性能优化
+>
+> 1. useMemo对返回结果进行优化 useMemo(()=>fn,[])
+>    - 将返回值进行优化,这个对大数据逻辑有很好的的帮助
+>    - 对子组件传递一个相同的对象,使用useMemo进行优化
+>    - 指的是不再修改的值,使用useMemo来进行优化
+> 2. 而useCallback对函数进行优化 useCallback(fn,[])
+>    - 不希望子组件随便进行渲染
+>
+> 而useMemo则只是对组件进行优化,相当于computed的操作,用来缓存数据,缓存因为组件更新导致函数重新渲染计算
+>
+> 对函数的返回结果来进行操作,和computed 还不大一致
 >
 > conputed? 比较像 Vue 中的 computed,对返回值做优化
 >
@@ -150,6 +205,10 @@ function HYbutton(props) {
 > 	// 只有在count发生改变的时候才会进行改变
 > 	return difCount(count);
 > }, [count]);
+> // 无需传入一个函数,而通过传入函数的调用来实现
+> const memo = useMemo(()=>{
+>   return cacelCount(count)
+> },[count])
 > ```
 
 ##### useRef
@@ -203,6 +262,7 @@ import { forwardRef,useImperativeHandle}
 const newRef = forwardRef((props,ref)=>{
   useImperativeHandle(ref，()=>({
     focus:()=>{
+      //相当于自定义ref方法,可以用的非常好,也很好用
       inputRef.current.focus()
     }
     // 依赖项指的是ref
@@ -217,6 +277,10 @@ const newRef = forwardRef((props,ref)=>{
 ![image-20220402143306970](/Users/huangruilin/Library/Application Support/typora-user-images/image-20220402143306970.png)
 
 更新 dom 前进行`触发的钩子函数`,但是会**阻塞 Dom 更新**,防止渲染两次 Dom
+
+一般用于一登录就立马修改一个值的时候 立马就渲染的情况   很少使用
+
+只有在useEffect使用会出现闪烁的时候,才需要使用useLayOutEffect
 
 ```js
 useLayOutEffect(() => {
