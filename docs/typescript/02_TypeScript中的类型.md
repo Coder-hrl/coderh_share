@@ -196,19 +196,178 @@ foo = 123
 
 联合类型是由两个或者多个其他类型组成的类型,表示可以是这些类型中的任何一个值,联合类型中的每个成员都可以称之为联合对象
 
+> TypeScript中的交差类型,**两种类型或者多种类型需要同时满足**
+>
+> 当一个类型即时IPerson  又是一个Type的情况下,但是这个可以使用interface重复声明,或者interface 继承
+>
+> 对象类型中,同时满足两种类型
+
 ```ts
-let foo:number & string = "123"
+interface Type {
+  a: number;
+}
+interface Type {
+  y: number;
+}
+
+interface IPerson {
+  name: string;
+  age: number;
+}
+
+const obj3: Type & IPerson = {
+  a: 12,
+  y: 213,
+  name: "sjkd",
+  age: 23
+}
+```
+
+#### type和interface
+
+> 类型别名,当一个类型需要多处进行使用的话,使用更为方便的话,则需要使用type来起别名
+
+```ts
+//类名使用type来起别名
+type Mynumber = number|string
+function (id:Mynumber)
+type str = "left" | "right" | "top" // 使用type字面量的方式
+```
+
+type需要使用 = 来进行赋予和赋值  与 const 非常相似
+
+而interface则与类的写法非常相似
+
+> 对于interface和type在使用上面区别并不大,在定义对象类型时,你可以任意选择使用,接口中几乎所有的属性都可以在type上使用
+>
+> 区别;
+>
+> 1. interface 只能用来声明对象; type则可以声明基本数据类型
+> 2. interface 可以多次声明一个对象(两次声明会合并在一起)  而type则不可以重复声明
+> 3. interface 是支持继承的,使用extends来继承,也可以被类所实现
+> 4. 使用`基本数据类型`的话 选择type来声明,使用`对象数据类型`的话使用interface 更好一些,因为interface 可扩展性会更好一些
+
+```ts
+interface Foo {
+  x:number,
+  y:number,
+  z:number
+}
+class  Dog  {}
+```
+
+#### 类型断言和非空断言
+
+> **类型断言 as 关键字** 这个关键字是指 **把什么直接当做什么来使用**
+>
+> 有的时候,TypeScript无法获取到具体的信息的时候,我们可以使用类型断言,获取更好的提示
+>
+> TypeScript 只允许转换为不具体的类型(any 或者 unknown)或者转换为更具体的类型  不允许进行强制类型转换
+>
+> 那如何进行**强制类型转换**呢
+>
+> `先转换为unknown之后,再进行强制类型转换`
+
+来获取到一个Dom元素,有的时候提示不智能,我们可以直接使用断言来提示
+
+有些情况下,我们需要使用类型缩小的操作,来让一个操作更加的合理,也相当于错误检错
+
+```ts
+const imgEl = document.querySelector(".img") as HTMLImageElement
+```
+
+> **非空类型断言** !. 比较危险   只有确保friend一定有值的时候,才可以使用!.方式
+>
+> 使用`可选链`会更加的安全一点
+>
+> 因为有的时候类型可能是null 或者 undefined,这样写会在使用方法的时候可能出现错误,
+>
+> **可以使用可选链来访问属性**,但是左侧不可以使用可选链进行赋值或者修改
+
+#### 字面量类型和类型缩小
+
+> Ts中的字面量类型的使用,与枚举的作用是非常相似
+
+```ts
+type Direction = "left"|"right"|"top"|"bottom";
+// 这个在进行使用一个变量中有几个类型的时候 很好使用操作
+```
+
+解决方案一 使用类型断言的方式
+
+二, 直接让info对象为一个字面量的类型,使用对象类型字面量的方式来使用   **只是其中的一个类型**
+
+```js
+const info ={
+  name:"sj",
+  method:"post"
+} as const   // 将info强制转换为字面量类型  这是一个特殊的语法类型
+// 将整个对象进行字面量推理
+```
+
+> 类型缩小
+>
+> 我们可以使用一些typeof、===、instanceof  或者if 手段来让类型类型的范围缩小,让推导更加的准确,更加的清楚
+
+```ts
+function printID(id: string | number) {
+  if (typeof id === "number") {
+    id.toPrecision(2)
+  } else {
+    id.split(",")
+  }
+}
 ```
 
 
 
-#### type和interface
-
-#### 类型断言和非空断言
-
-#### 字面量类型和类型缩小
-
 #### 函数的类型和函数签名
+
+> 什么是函数的类型就是指函数的入参和返回值(arg:number)=>number
+>
+> 我们可以编写函数类型表达式的形式来表明函数的类型
+>
+> 1. function type expression (参数列表) => 返回值 表明一个函数
+
+因为在JavaScript开发中,函数是最重要的一个参数,是一等公民
+
+**给函数编写属于函数的TypeScript类型** 被称之为函数类型表达式
+
+```js
+function foo:(arg:number)=>number=(arg:number):number{}
+
+
+type CalcType = (num1: number, num2: number) => number
+
+function calc(calcFn: CalcType) {
+  const num1 = 10
+  const num2 = 20;
+  return calcFn(num1, num2)
+}
+```
+
+> **函数类型参数的格式问题**   个数校验是不严格的
+>
+> TypeScript对传入的函数类型的参数个数不进行检测
+>
+> 经典例子  arr.forEach   在这边说明了为什么TypeScript对函数的入参个数不校验
+
+> 函数**调用签名** call signing
+>
+> 函数也是一个对象,自己也可以有自己的属性值
+>
+> ```ts
+> interface IBar{
+>   name:string,
+>   age:number,
+>   //函数可以调用,函数调用签名
+>   (name:string ):number
+> }
+> ```
+
+如果只是描述函数类型本身(函数可以被调用)
+
+如果 在描述函数作为对象可以被调用,同时函数也有其他的属性的话使用函数调用签名
 
 #### 函数的重载和this类型
 
