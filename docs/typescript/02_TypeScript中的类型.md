@@ -276,7 +276,7 @@ class  Dog  {}
 const imgEl = document.querySelector(".img") as HTMLImageElement
 ```
 
-> **非空类型断言** !. 比较危险   只有确保friend一定有值的时候,才可以使用!.方式
+> **非空类型断言** !. 比较危险   `只有你确保friend一定有值的时候,才可以使用!.方式`
 >
 > 使用`可选链`会更加的安全一点
 >
@@ -371,3 +371,71 @@ function calc(calcFn: CalcType) {
 
 #### 函数的重载和this类型
 
+> new调用函数,函数里面构造签名的写法
+
+```ts
+interface ICTOrPerson{
+  new():Person
+}
+```
+
+> 可选类型:	类型|undefined
+>
+> 剩余参数: ...args:number[]
+>
+> 函数的参数可以有默认值,同时这个默认值可以接受undefined值
+
+> 我们可以编写多个重载函数,但是需要编写重载签名,通用函数是不能被调用
+>
+> 通常在编写工具函数(通用函数)的时候使用
+
+```ts
+function add(arg1: number, arg2: number): number
+function add(arg1: string, arg2: string): string
+
+function add(arg1: any, arg2: any): any {
+  return arg1 + arg2
+}
+
+add("12", "21")
+```
+
+1. 知道ts 但没有用过
+2. anyScript
+3. 大多数使用any,很多类型也可以使用
+4. 大多数类型正确,极少数使用any
+5. 使用Ts封装一些高级用法
+6. 真正TS融会贯通(Ts开发者)
+
+#### TypeScript类和面向对象
+
+认识类的使用,在js中类的使用非常少,实际上在JavaScript的开发中,我们更加习惯于函数式编程
+
+在面向对象的世界中,任何事物都是可以使用类的结构来描述的,类中包含特有的`属性和方法`
+
+**在ts中,如果类中有成员属性的话,我们需要声明成员属性**,我们需要在类中声明成员属性
+
+```ts
+class Person {
+  name:string
+  age:string
+  constructor(name:string,age:string){
+    this.name = name
+    this.age = age
+  }
+  say():void{
+    console.log(this.name)
+  }
+}
+
+```
+
+> public 可以在内部,外部,子类的任何地方都可以访问
+>
+> private 私有的,只可以在当前类的内部地方可以使用
+>
+> protected 受保护的,只有在当前类和子类中可以访问该属性
+>
+> 在类中,我们可以使用标识符来进行是否可以被访问
+
+#### 匿名函数传递的时候,函数的参数个数会被忽略掉
