@@ -14,19 +14,19 @@ title: Node.js 是一个开源、跨平台的 JavaScript 运行时环境。
 
 分析<script src =“">标签,然后执行 JavaScript 代码,是一门解释性语言,转换成汇编语言,然后转换成机械语言.
 
-##### 比较常见的 JavaScript 解析器
+### 比较常见的 JavaScript 解析器
 
 **V8 引擎**,谷歌开发,目前 chrome 浏览器使用,底层由`c++`编写,也是 Node 的运行环境, V8 引擎速度快,同时对 ECMAscript 的支持特别好,包含了**100 万行代码**,嵌入到 V8 引擎当中
 
-**JavaScriptCore,**webkit 的解释器,由 apple 公司研发,目前微信小程序 ios,ipados 和 Mac 也在使用`小程序的逻辑层是JavaScriptCore来执行的`
+**JavaScriptCore**,webkit 的解释器,由 apple 公司研发,目前微信小程序 ios,ipados 和 Mac 也在使用`小程序的逻辑层是JavaScriptCore来执行的`
 
 **spiderMonkey**,第一代解释器,**Chakra**微软的解释器
 
-##### webket 内核
+### webket 内核
 
 包括 webCore 和 JavaScriptCore,webCore 是用来 HTML 解析布局渲染
 
-### JavaScript 代码的执行过程
+## JavaScript 代码的执行过程
 
 > 是一门高级语言,需要通过解释器转换成汇编语言,然后在被转换成机器语言
 >
@@ -46,11 +46,9 @@ _这也是为什么尽可能只让一个函数调用同种类型的参数_
 
 ### 浏览器和 Node 的区别
 
-![image-20220301200055120](/Users/huangruilin/Library/Application Support/typora-user-images/image-20220301200055120.png)
-
 浏览器和 Node 都是需要`调用操作系统的接口来进行操作`的.Node 的**中间层为 libuv**
 
-###### libuv 里面有事件循环
+### libuv 里面有事件循环
 
 Node 里面不同的模块是由不同的语言来编写的,有`C++(68%),JavaScript(29.4%),python`等语言,目前最主要的还是 c++语言。
 

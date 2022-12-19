@@ -61,6 +61,7 @@ module.exports = {
 				text: '面试错题本',
 				link: '/front_interview/',
 			},
+			{ text: 'Java', link: '/Java/' },
 			// {
 			// 	text: '运维架构',
 			// 	link: '/Operation/',
