@@ -1,4 +1,6 @@
-# JavaScript 类型
+---
+title: Typescript中类型
+---
 
 #### 数组 Array
 
@@ -9,7 +11,7 @@ string[]:数组类型,并且数组中存放的字符串类型
 Array<srting>泛型方式:数组类型,字符串类型
 
 ```js
-const names: string[] = ['12', '234']
+const names: string[] = ['12', '234'];
 ```
 
 #### Object 类型
@@ -18,20 +20,20 @@ const names: string[] = ['12', '234']
 
 ```ts
 type oneObject = {
-  name: string
-  age: number
-}
+	name: string;
+	age: number;
+};
 const a: oneObject = {
-  name: '123',
-  age: 23,
-}
+	name: '123',
+	age: 23,
+};
 const b: {
-  name: string
-  age: number
+	name: string;
+	age: number;
 } = {
-  name: 'asjkhd',
-  age: 123,
-}
+	name: 'asjkhd',
+	age: 123,
+};
 ```
 
 #### null 和 undefined 类型
@@ -39,8 +41,8 @@ const b: {
 > 在 TypeScript 中 null 不仅仅是值,也是一种类型
 
 ```ts
-const null1: null = null
-const und1: undefined = undefined
+const null1: null = null;
+const und1: undefined = undefined;
 ```
 
 #### 函数的类型
@@ -52,8 +54,11 @@ const und1: undefined = undefined
 声明函数时,可以在每个参数后添加类型注解,以声明函数接受的参数类型
 
 ```ts
-function increment(num1: number, num2: number): number {
-  return num1 + num2
+function increment(
+	num1: number,
+	num2: number,
+): number {
+	return num1 + num2;
 }
 ```
 
@@ -63,9 +68,9 @@ function increment(num1: number, num2: number): number {
 
 ```ts
 type obj = {
-  name: string
-  age: number
-}
+	name: string;
+	age: number;
+};
 ```
 
 #### any 类型 anyScript 没毛病 老铁
@@ -73,9 +78,9 @@ type obj = {
 如果我们没法确认一个变量的类型,这个类型是要发生改变的,我们可以修改为 any 类型,如果类似于下面这种
 
 ```js
-let name = 'agc'
-name = 12
-name = { a: 213 }
+let name = 'agc';
+name = 12;
+name = { a: 213 };
 ```
 
 any 类型有点像讨巧的 TypeScript 手段,我们可以在对象里面取到任何的值类型
@@ -94,11 +99,11 @@ any 类型有点像讨巧的 TypeScript 手段,我们可以在对象里面取到
 需要进行**类型缩小校验**操作,才能根据缩小之后的类型,进行对应的操作
 
 ```js
-let foo: unknown = 'aaa'
-foo = 123
+let foo: unknown = 'aaa';
+foo = 123;
 // 必须要先进行类型缩小校验
 if (typeof foo === 'string') {
-  clg(foo.length)
+	clg(foo.length);
 }
 ```
 
@@ -120,7 +125,7 @@ const ExecFnType = (...args:any[]) => void
 #### 函数类型表达式
 
 ```ts
-type FooType = () => void
+type FooType = () => void;
 ```
 
 void 通常是用来指定一个函数是没有返回值的
@@ -141,11 +146,11 @@ void 通常是用来指定一个函数是没有返回值的
 
 ```ts
 function foo(): never {
-  throw new Error('12223')
+	throw new Error('12223');
 }
 // 因为直接返回一个空数组,会自动推导出一个never
 function parseLyric(): never[] {
-  return []
+	return [];
 }
 ```
 
@@ -155,7 +160,7 @@ function parseLyric(): never[] {
 
 ```ts
 function foo(message: string | number) {
-  console.log(message)
+	console.log(message);
 }
 ```
 
@@ -170,7 +175,11 @@ function foo(message: string | number) {
 > useState 的封装
 
 ```js
-const names: [number, string, obj] = [12, '12', { 12: 12 }]
+const names: [number, string, obj] = [
+	12,
+	'12',
+	{ 12: 12 },
+];
 ```
 
 可以在数组,或者使用自定义 useHooks 的时候,使用这个内容,可以使用元组,自定义返回结果
@@ -190,8 +199,8 @@ const names: [number, string, obj] = [12, '12', { 12: 12 }]
 TypeScript 可以根据我们缩小的代码结果,推断出更准确的类型
 
 ```ts
-let foo: number | string = '123'
-foo = 123
+let foo: number | string = '123';
+foo = 123;
 ```
 
 联合类型是由两个或者多个其他类型组成的类型,表示可以是这些类型中的任何一个值,联合类型中的每个成员都可以称之为联合对象
@@ -204,23 +213,23 @@ foo = 123
 
 ```ts
 interface Type {
-  a: number
+	a: number;
 }
 interface Type {
-  y: number
+	y: number;
 }
 
 interface IPerson {
-  name: string
-  age: number
+	name: string;
+	age: number;
 }
 
 const obj3: Type & IPerson = {
-  a: 12,
-  y: 213,
-  name: 'sjkd',
-  age: 23,
-}
+	a: 12,
+	y: 213,
+	name: 'sjkd',
+	age: 23,
+};
 ```
 
 #### type 和 interface
@@ -249,9 +258,9 @@ type 需要使用 = 来进行赋予和赋值 与 const 非常相似
 
 ```ts
 interface Foo {
-  x: number
-  y: number
-  z: number
+	x: number;
+	y: number;
+	z: number;
 }
 class Dog {}
 ```
@@ -273,7 +282,9 @@ class Dog {}
 有些情况下,我们需要使用类型缩小的操作,来让一个操作更加的合理,也相当于错误检错
 
 ```ts
-const imgEl = document.querySelector('.img') as HTMLImageElement
+const imgEl = document.querySelector(
+	'.img',
+) as HTMLImageElement;
 ```
 
 > **非空类型断言** !. 比较危险 `只有你确保friend一定有值的时候,才可以使用!.方式`
@@ -289,7 +300,11 @@ const imgEl = document.querySelector('.img') as HTMLImageElement
 > Ts 中的字面量类型的使用,与枚举的作用是非常相似,也就是 enum 枚举类型
 
 ```ts
-type Direction = 'left' | 'right' | 'top' | 'bottom'
+type Direction =
+	| 'left'
+	| 'right'
+	| 'top'
+	| 'bottom';
 // 这个在进行使用一个变量中有几个类型的时候 很好使用操作
 ```
 
@@ -311,11 +326,11 @@ const info ={
 
 ```ts
 function printID(id: string | number) {
-  if (typeof id === 'number') {
-    id.toPrecision(2)
-  } else {
-    id.split(',')
-  }
+	if (typeof id === 'number') {
+		id.toPrecision(2);
+	} else {
+		id.split(',');
+	}
 }
 ```
 
@@ -356,10 +371,10 @@ function calc(calcFn: CalcType) {
 >
 > ```ts
 > interface IBar {
->   name: string
->   age: number
->   //函数可以调用,函数调用签名
->   (name: string): number
+> 	name: string;
+> 	age: number;
+> 	//函数可以调用,函数调用签名
+> 	(name: string): number;
 > }
 > ```
 
@@ -373,7 +388,7 @@ function calc(calcFn: CalcType) {
 
 ```ts
 interface ICTOrPerson {
-  new (): Person
+	new (): Person;
 }
 ```
 
@@ -388,14 +403,23 @@ interface ICTOrPerson {
 > 通常在编写工具函数(通用函数)的时候使用
 
 ```ts
-function add(arg1: number, arg2: number): number
-function add(arg1: string, arg2: string): string
+function add(
+	arg1: number,
+	arg2: number,
+): number;
+function add(
+	arg1: string,
+	arg2: string,
+): string;
 
-function add(arg1: any, arg2: any): any {
-  return arg1 + arg2
+function add(
+	arg1: any,
+	arg2: any,
+): any {
+	return arg1 + arg2;
 }
 
-add('12', '21')
+add('12', '21');
 ```
 
 1. 知道 ts 但没有用过
@@ -415,15 +439,18 @@ add('12', '21')
 
 ```ts
 class Person {
-  name: string
-  age: string
-  constructor(name: string, age: string) {
-    this.name = name
-    this.age = age
-  }
-  say(): void {
-    console.log(this.name)
-  }
+	name: string;
+	age: string;
+	constructor(
+		name: string,
+		age: string,
+	) {
+		this.name = name;
+		this.age = age;
+	}
+	say(): void {
+		console.log(this.name);
+	}
 }
 ```
 

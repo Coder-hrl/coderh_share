@@ -1,10 +1,15 @@
 ## javascript 补充知识
 
 > 命令式编程和声明式编程的区别在与,命令式是说一下做一下,注重过程
+> javascript 是一门单线程解释型语言，或者可以叫做`即时编译型语言`
 >
 > 声明式编程则是直接使用,直接得到结果
 >
 > 区别在于他是否自己真正去实现一个功能
+
+### 编译型语言
+
+需要先过滤一遍文件，看看是否有错别字，最后编译成计算机所认识的二进制代码
 
 ##### javascript 是一门`高级编程语言` 解释性语言
 
@@ -66,10 +71,10 @@
 
 ```js
 function sum(num1, num2) {
-  return num1 + num2
+	return num1 + num2;
 }
-sum(1, 2) // 因为在机器指令相加求和,和拼接在一起是两个完全不同的机器指令.
-sum('1', '2') // 因为在v8引擎中的优化,在函数中重复执行同种类型的机器指令是高于执行不同类型的机器指令的.
+sum(1, 2); // 因为在机器指令相加求和,和拼接在一起是两个完全不同的机器指令.
+sum('1', '2'); // 因为在v8引擎中的优化,在函数中重复执行同种类型的机器指令是高于执行不同类型的机器指令的.
 ```
 
 ##### 内核构成部分
@@ -135,27 +140,27 @@ v8 引擎里面会有一个`执行上下文栈`,是一个栈结构
 
 ```js
 function foo() {
-  console.log(n) // 这里的n并不会去寻找外面的n,因为在自身AO对象里面是存在n属性的
-  var n = 12
-  console.log(n)
-  // undefined和12
+	console.log(n); // 这里的n并不会去寻找外面的n,因为在自身AO对象里面是存在n属性的
+	var n = 12;
+	console.log(n);
+	// undefined和12
 }
-var n = 200
-foo()
+var n = 200;
+foo();
 ```
 
 在函数`词法解析`的时候,是不会在乎`有没有return`,都会进行`解析`
 
 ```js
 function foo() {
-  n = 120 // 如果不使用var 他会自动注册一个全局n并给n赋值
+	n = 120; // 如果不使用var 他会自动注册一个全局n并给n赋值
 }
-foo()
-console.log(n) // 120
+foo();
+console.log(n); // 120
 ```
 
 ```js
-var a = (b = 20)
+var a = (b = 20);
 // 相等于var a = 20; b = 20
 // 在使用函数的时候会有所不同
 ```
@@ -207,15 +212,15 @@ var a = (b = 20)
 
 ```js
 function foo(aa) {
-  aa()
+	aa();
 }
 function bar() {
-  console.log('bar')
+	console.log('bar');
 }
 // 在这里面是可以传入一个参数的。
-foo(bar)
+foo(bar);
 function foo(num1, num2, fn) {
-  fn(num1, num2)
+	fn(num1, num2);
 }
 // 这个是非常灵活的,可以给fn传入不同的函数来去计算结果
 ```
@@ -239,10 +244,13 @@ function foo(num1, num2, fn) {
 `flatMap`返回一个新的数组 作用:数组扁平化形成数组 无限(Infinity)
 
 ```js
-const hd = [1, 21, 24, 18]
-let total = hd.reduce((preValue, item) => {
-  return preValue + item
-}, 0) // 这个为初始值0,返回值total为相加后的结果
+const hd = [1, 21, 24, 18];
+let total = hd.reduce(
+	(preValue, item) => {
+		return preValue + item;
+	},
+	0,
+); // 这个为初始值0,返回值total为相加后的结果
 ```
 
 ##### 闭包的定义
@@ -280,30 +288,32 @@ let total = hd.reduce((preValue, item) => {
 
 ```js
 function foo() {
-  var name = '123'
-  var age = 18
-  function bar() {
-    console.log(name)
-  }
-  return bar
+	var name = '123';
+	var age = 18;
+	function bar() {
+		console.log(name);
+	}
+	return bar;
 }
-var a = foo()
-a()
+var a = foo();
+a();
 // 因为调用了foo 返回的bar函数,同时赋值给a为foo函数的返回值,
 // 而bar函数的父作用域是foo,所以当foo执行完被调用栈弹出的时候,foo所创建的ao对象并没有被销毁掉
 // 因为a已经分配了 bar的内存地址,而在函数预解析的时候,会创建一个函数体和parentScope,
 // 而parentScope保留的是父级函数的引用
 // 因为父级函数有被引用,所以不会被垃圾回收
-a = null
+a = null;
 // 在真实的引擎中age是会被销毁掉的,只会保留所需要的属性
 // 但是如果将被引用的对象直接赋值为null的时候,则不会造成内存泄漏
-foo = null
+foo = null;
 ```
 
 ##### 快速创建一个高内存的数组
 
 ```js
-const arr = new Array(1024 * 1024).fill(1)
+const arr = new Array(1024 * 1024).fill(
+	1,
+);
 // js引擎进行了优化,所以小于2的32次方的都只是占4个字节
 // 一个整数为4位   1024*4 = 4kb*1024 = 4M
 ```
@@ -324,9 +334,13 @@ const arr = new Array(1024 * 1024).fill(1)
 4. 构造函数中的 new 关键字
 
 ```js
-const box = document.querySelector('div')
-box.onclick = function () {} // 只能给元素添加一个事件
-box.addEventListener('click', function () {})
+const box =
+	document.querySelector('div');
+box.onclick = function () {}; // 只能给元素添加一个事件
+box.addEventListener(
+	'click',
+	function () {},
+);
 ```
 
 可以给数组中的`forEach和map`等函数,都是可以可以传入`第三个参数`为绑定的 this
@@ -346,7 +360,10 @@ new 关键词不能和 call,aplly,bind 等函数使用
 如果在使用箭头函数的时候,添加一个`括号`,代表返回的是对象类型
 
 ```js
-const name = () => ({ name: 'libai', age: 12 }) // 如果在箭头函数,函数体外面添加一个括号的话,则代表这个箭头函数返回的是一个对象,而不是一个函数体
+const name = () => ({
+	name: 'libai',
+	age: 12,
+}); // 如果在箭头函数,函数体外面添加一个括号的话,则代表这个箭头函数返回的是一个对象,而不是一个函数体
 
 // bind的使用 foo.bind('name')   这是一个整体,如果使用在后面添加一个()就可以了
 ```
@@ -357,14 +374,14 @@ const name = () => ({ name: 'libai', age: 12 }) // 如果在箭头函数,函数�
 
 ```js
 const obj = {
-  foo: () => {
-    // 注意此时的上级作用域是window,而不是obj,obj只是一个对象
-  },
-}
+	foo: () => {
+		// 注意此时的上级作用域是window,而不是obj,obj只是一个对象
+	},
+};
 function foo() {
-  return () => {
-    console.log('12')
-  }
+	return () => {
+		console.log('12');
+	};
 }
 ```
 
@@ -375,7 +392,7 @@ function foo() {
 给函数原型上面添加 apply 和 call 方法
 
 ```js
-Function.prototype.call()
+Function.prototype.call();
 // 给所有函数上都添加一个方法
 ```
 
@@ -427,17 +444,17 @@ function(num1,...num2){
 ```js
 // 是指foo()()
 function foo(a, b, c, d) {}
-foo(1, 2, 3, 4)
+foo(1, 2, 3, 4);
 function foo(a) {
-  return function (b) {
-    return function (c) {
-      return a + b + c
-    }
-  }
+	return function (b) {
+		return function (c) {
+			return a + b + c;
+		};
+	};
 }
-const foo = (x) => (y) => (c) => x + y + Z
+const foo = x => y => c => x + y + Z;
 
-foo(1)(2)(3)(4)
+foo(1)(2)(3)(4);
 // 这个过程就是函数柯里化
 // 函数职责单一,不让多个参数传入到一个函数中
 // 而是每一个函数,处理的事务应该是单一的
@@ -448,8 +465,8 @@ foo(1)(2)(3)(4)
 可以先在前面定义一个通用的参数,后根据实际情况分别传入参数
 
 ```js
-var newlog = foo(x)
-newlog(y)
+var newlog = foo(x);
+newlog(y);
 ```
 
 ##### with 语句 可以形成自己的作用域 **非常不推荐使用**
@@ -469,8 +486,8 @@ function foo(){
 ##### eval 方法 将传过来的字符串当做 js 代码来运行
 
 ```js
-let js = 'var name="libai",age=18'
-eval(js) // 也是一段js代码
+let js = 'var name="libai",age=18';
+eval(js); // 也是一段js代码
 ```
 
 1. 可读性非常差,逻辑性非常差
@@ -527,9 +544,9 @@ Object.defineProperties(){}
 ```
 
 ```js
-Object.seal()
+Object.seal();
 //
-Object.freeze()
+Object.freeze();
 // 不允许进行任何操作,冻结
 ```
 
@@ -569,7 +586,7 @@ function(name,age,height){
 ##### 对象原型
 
 ```js
-const obj = { name: 'libai', age: 18 }
+const obj = { name: 'libai', age: 18 };
 // 他的内部都是有prototype
 // __proto__ 是浏览器提供的方法
 // 使用Object.getPrototypeOf()来查找到object的原型
@@ -617,9 +634,9 @@ Person 函数的原型对象
 ##### 顶层原型 null 的来自哪里
 
 ```js
-const obj = {}
-const obj2 = {}
-obj.__proto__ = obj2
+const obj = {};
+const obj2 = {};
+obj.__proto__ = obj2;
 // 将obj.__proto__变成obj2，而不是 之前的object原型对象
 // 因为当原型对象没有上层的时候,就会为null ,代表没有原型了
 ```
@@ -628,7 +645,7 @@ obj.__proto__ = obj2
 2. `寄生式继承`,在`一方修改原型`的时候,另一方`也会被修改`
 
 ```js
-foo.prototype = father.prototype
+foo.prototype = father.prototype;
 // 父类原型直接赋值给子类,成为子类原型
 // 子类修改方法,会直接修改父类
 ```
@@ -636,15 +653,15 @@ foo.prototype = father.prototype
 3. `重生式继承`,` 重新克隆一个父原型`,这样就不会造成改变
 
 ```js
-Object.create('父对象')
+Object.create('父对象');
 ```
 
 ```js
 //原型式继承,与上述的Object.create()一模一样
 function create(o) {
-  const newObj = {}
-  Object.setPropertyOf(newObj, o)
-  return newObj
+	const newObj = {};
+	Object.setPropertyOf(newObj, o);
+	return newObj;
 }
 // 冷知识,Object.setPropertyOf(传入的是一个对象)
 // 工厂函数,通过传入不同的值,来不停的创建出一个个类似的产品
@@ -669,34 +686,34 @@ function create(o) {
 ```js
 // Typeof 类 function 可读性较强
 class Person {
-  // 构造器
-  constructor(name, age) {
-    super()
-    // super一定要早于this调用.
-    this.name = name
-    this.age = age
-    this._address = '北京市'
-  }
-  // 普通的实例方法
-  // 创建出来的对象进行访问的
-  eating() {
-    console.log('name')
-  }
-  // 属性访问器
-  get address() {
-    return this._address
-  }
-  //类方法,可以通过类名直接来访问的方法
-  static createPerson() {}
+	// 构造器
+	constructor(name, age) {
+		super();
+		// super一定要早于this调用.
+		this.name = name;
+		this.age = age;
+		this._address = '北京市';
+	}
+	// 普通的实例方法
+	// 创建出来的对象进行访问的
+	eating() {
+		console.log('name');
+	}
+	// 属性访问器
+	get address() {
+		return this._address;
+	}
+	//类方法,可以通过类名直接来访问的方法
+	static createPerson() {}
 }
 class libai extends Person {
-  constructor(name, age) {
-    super(name, age)
-  }
-  eating() {
-    // super.的方式来调用父类的构造方法
-    super.eating()
-  }
+	constructor(name, age) {
+		super(name, age);
+	}
+	eating() {
+		// super.的方式来调用父类的构造方法
+		super.eating();
+	}
 }
 ```
 
@@ -712,7 +729,7 @@ javascript 只能实现单继承,不能实现多继承
 
 ```js
 class my extends Array {
-  say() {}
+	say() {}
 }
 ```
 
@@ -725,28 +742,28 @@ class my extends Array {
 ###### let const
 
 ```js
-console.log(name)
+console.log(name);
 //  已经被创建出来了,但是不能被访问,直到词法赋值
 //  这是js引擎内部做的优化
 //  虽然没有变量提升, 但是还是被创建出来,直到执行到这一行才会进行作用域提升
-let name = 'libai'
+let name = 'libai';
 // 块级作用域
 {
-  let name = 'libai'
+	let name = 'libai';
 }
-console.log(name) // name define property
+console.log(name); // name define property
 ```
 
 ##### 模板字符串``
 
 ```js
-;`this.name${name}`
+`this.name${name}`;
 // 冷知识
 function foo(name, age) {
-  console.log(name)
+	console.log(name);
 }
-const name = '12'
-foo`hello${name} world`
+const name = '12';
+foo`hello${name} world`;
 // 第一个参数是[hello,world] 第二个参数是name
 ```
 
@@ -775,10 +792,10 @@ restparamter 以...为前缀,他会将`剩余参数放到一个数组里`,包含
 
 ```js
 function foo(name, ...list) {
-  console.log(name)
-  console.log(list)
+	console.log(name);
+	console.log(list);
 }
-foo('liabi', 12, 34, 12, 11)
+foo('liabi', 12, 34, 12, 11);
 // name是  libai     list则是一个数组[12,34,12,11]
 ```
 
@@ -795,10 +812,10 @@ foo('liabi', 12, 34, 12, 11)
 ##### es6 的展开语法的使用(没什么好写的)
 
 ```js
-const arr = ['anme', 'age']
-const name = 'name'
-console.log(...arr) // 'name' 'age'
-console.log(...name) // 'n' 'a' 'm' 'e'
+const arr = ['anme', 'age'];
+const name = 'name';
+console.log(...arr); // 'name' 'age'
+console.log(...name); // 'n' 'a' 'm' 'e'
 ```
 
 展开运算符做的是一个**_浅拷贝_** 非常重要
@@ -808,9 +825,9 @@ console.log(...name) // 'n' 'a' 'm' 'e'
 ##### es6 中表示数值的方式
 
 ```js
-const 二进制 = 0b100
-const 八进制 = 0o100
-const 十六进制 = ox100
+const 二进制 = 0b100;
+const 八进制 = 0o100;
+const 十六进制 = ox100;
 ```
 
 ##### symbol 独一无二的标识
@@ -818,11 +835,11 @@ const 十六进制 = ox100
 **注意不需要加 new,他是一个基础数据类型**
 
 ```js
-const name = Symbol('name')
-const s1 = Symbol('aaa')
-const s2 = Symbol('aaa')
+const name = Symbol('name');
+const s1 = Symbol('aaa');
+const s2 = Symbol('aaa');
 // Symbol.for()传入一个key 两个相同的key是相同的
-const key = Symbol.keyfor(s1)
+const key = Symbol.keyfor(s1);
 // 可以通过Symbol.keyfor() 来获取这个Symbol的key值
 ```
 
@@ -839,20 +856,20 @@ obj.name 是通过字符串 name 来查找的
 set 并非是数组类型的结构 而是
 
 ```js
-const set = new Set()
-const n1 = { name: 'libai' }
-const n2 = n1
-set.add(n1)
-set.add(n2)
-console.log(set) // set 只有一个
+const set = new Set();
+const n1 = { name: 'libai' };
+const n2 = n1;
+set.add(n1);
+set.add(n2);
+console.log(set); // set 只有一个
 // for of 只能对可迭代对象进行迭代
 // size方法,查看里面有多少元素
-set.delete()
-set.has() // 是否包含某个元素
-set.clear() // 清除set里面所有的数据
-set.forEach((item) => {
-  console.log(item)
-})
+set.delete();
+set.has(); // 是否包含某个元素
+set.clear(); // 清除set里面所有的数据
+set.forEach(item => {
+	console.log(item);
+});
 ```
 
 ###### WeakSet 只能存放对象类型
@@ -860,17 +877,17 @@ set.forEach((item) => {
 ```js
 // weakSet只能存放对象类型,不能存放普通数据类型
 // 里面都是弱引用,会被GC回收(垃圾回收)
-const weakSet = new weakSet()
+const weakSet = new weakSet();
 // 当引用清除的时候,如果只剩下weakSet存储这对象的引用,也是会被清除的
 ```
 
 ##### Map 可以存储对象为键
 
 ```js
-const map = new Map([])
-map.set()
-map.delete()
-map.has()
+const map = new Map([]);
+map.set();
+map.delete();
+map.has();
 ```
 
 ##### ES6 中 includes
@@ -878,8 +895,8 @@ map.has()
 ```js
 // 在indexof里面是无法判断有没有NaN的
 // 而includes方法则是可以判断数组中有没有NaN的
-const arr = [12, 11, 32]
-arr.includes(12, 起始的索引)
+const arr = [12, 11, 32];
+arr.includes(12, 起始的索引);
 ```
 
 ##### es7 中的运算符
@@ -906,14 +923,14 @@ padStart(10,'')  前一个是指填充到多少字符,另外一个就是填充�
 ##### flat 降维降调
 
 ```js
-flat(infinitfy)
-flatMap((e) => e.split(','))
+flat(infinitfy);
+flatMap(e => e.split(','));
 ```
 
 ##### bigInt 最大值
 
 ```js
-Number.MAX_SAFE_INTEGER
+Number.MAX_SAFE_INTEGER;
 // 他是一种类型
 // 相加的时候要使用bigInt()来进行转化
 ```
@@ -934,12 +951,12 @@ const name = aaa ?? default value
 
 ```js
 //浏览器环境下
-console.log(this)
-console.log(window)
+console.log(this);
+console.log(window);
 // node环境下
-console.log(global)
+console.log(global);
 
-console.log(globalThis) // 在所有里面都会找到this
+console.log(globalThis); // 在所有里面都会找到this
 ```
 
 ##### weakRef 弱引用
@@ -991,10 +1008,10 @@ const newProxy = new Proxy(obj,{
 
 ```js
 const newProxy = new Proxy(obj, {
-  get(target, key) {
-    return Reflect.get(target, key)
-  },
-})
+	get(target, key) {
+		return Reflect.get(target, key);
+	},
+});
 ```
 
 `receiver`参数的作用,是指的代理对象.`receiver是完全相等于创建的代理对象的`
@@ -1004,7 +1021,11 @@ const newProxy = new Proxy(obj, {
 ##### Reflect 的 construct 方法
 
 ```js
-Reflect.construct(目标类, 参数, 需要被new的类)
+Reflect.construct(
+	目标类,
+	参数,
+	需要被new的类,
+);
 ```
 
 ##### 响应式
@@ -1022,23 +1043,25 @@ promise 的出现是为了解决`回调地狱`
 then 方法也是有返回值的,返回值也是一个 promise 对象,链式调用
 
 ```js
-new Promise().then((res) => {}).then((res) => {})
+new Promise()
+	.then(res => {})
+	.then(res => {});
 // return 出来的值指的是下一层then的res值
 ```
 
 返回一个 Promise 的情况,返回一个 thenable 的情况.
 
 ```js
-const promise = new Promise()
+const promise = new Promise();
 promise
-  .then((res) => {
-    return {
-      then: function (resolve, reject) {
-        resolve(), reject()
-      },
-    }
-  })
-  .catch((err) => {})
+	.then(res => {
+		return {
+			then: function (resolve, reject) {
+				resolve(), reject();
+			},
+		};
+	})
+	.catch(err => {});
 ```
 
 `promise.catch() 捕获错误` 传入错误拒绝的回调,`可以捕获reject()也可以捕获throw new Error `
@@ -1082,7 +1105,11 @@ setTimeOut 是宏任务,同时也可以使用 queueMicrotask
 存在`done和value`两个属性,当迭代器结束之后`done返回一个true,说明迭代完毕`
 
 ```js
-const names = ['janmes', 'kate', 'youyou']
+const names = [
+	'janmes',
+	'kate',
+	'youyou',
+];
 // return value:'janmes',done:false
 // return value:'kate',done:false
 // return value:'youyou',done:false
@@ -1093,20 +1120,26 @@ const names = ['janmes', 'kate', 'youyou']
 
 ```js
 const iterable = {
-  //符合可迭代对象Symbol.iterator函数
-  [Symbol.iterator]: function () {
-    let index = 0
-    return {
-      next: () => {
-        if (index < names.length) {
-          return { done: false, value: names[index++] }
-        } else {
-          return { done: true, value: undefined }
-        }
-      },
-    }
-  },
-}
+	//符合可迭代对象Symbol.iterator函数
+	[Symbol.iterator]: function () {
+		let index = 0;
+		return {
+			next: () => {
+				if (index < names.length) {
+					return {
+						done: false,
+						value: names[index++],
+					};
+				} else {
+					return {
+						done: true,
+						value: undefined,
+					};
+				}
+			},
+		};
+	},
+};
 ```
 
 `for of只能迭代可迭代对象`,for of 无法遍历普通对象,是因为普通对象不是可遍历对象
@@ -1130,16 +1163,16 @@ async 和 await 是把生成器和 promise 结合在一起,await 相当于 yield
 ```js
 // 生成器
 function* foo() {
-  // 生成器函数返回一个生成器对象,是一个特殊的迭代器对象
-  console.log('函数')
+	// 生成器函数返回一个生成器对象,是一个特殊的迭代器对象
+	console.log('函数');
 
-  const value10 = 10
-  console.log(value10)
-  yield
+	const value10 = 10;
+	console.log(value10);
+	yield;
 
-  const name1 = '112'
-  console.log(name1)
-  yield
+	const name1 = '112';
+	console.log(name1);
+	yield;
 }
 // 每次执行next的时候都会执行一段代码,在第一次调next的时候,会执行到第一段yield
 // foo().next()
@@ -1168,9 +1201,9 @@ async 和 await 在函数执行过程中
 
 ```js
 async function foo() {
-  console.log(111)
-  await bar()
-  // bar会立即执行,与yiled类似,只不过后面的代码则是被分配为promise函数
+	console.log(111);
+	await bar();
+	// bar会立即执行,与yiled类似,只不过后面的代码则是被分配为promise函数
 }
 
 //当async函数没有返回值的时候会默认返回undefined,默认为promise.resolve(undefined)
@@ -1209,8 +1242,8 @@ common.js es6 方案
 
 ```js
 var moduleA = (function () {
-  return {}
-})() // 立即执行函数外加闭包
+	return {};
+})(); // 立即执行函数外加闭包
 // 缺点是需要基础moduleA,不同公司的规范是不一样的
 //都在使用esmodule
 ```
@@ -1382,9 +1415,9 @@ yarn 为了解决 npm 的一些缺陷从而出现的,安装速度非常慢,版�
 
 ```js
 JSON.stringify(obj, (key, value) => {
-  // 可以对数据进行拦截操作
-  return value
-})
+	// 可以对数据进行拦截操作
+	return value;
+});
 // 第三个参数是传递缩进的字符串
 ```
 
@@ -1407,7 +1440,7 @@ vuex 是存储在浏览器端内存中的
 基于 javascript 面向对象数据库,当成一个事务
 
 ```js
-const request = IndexedDB.open('') // 有则复用,无则创建
+const request = IndexedDB.open(''); // 有则复用,无则创建
 ```
 
 ### cookie

@@ -33,17 +33,17 @@ module.exports = {
 	// 主题配置
 	themeConfig: {
 		nav: [
-			{ text: 'Home', link: '/' },
+			// { text: 'Home', link: '/' },
 			{
 				text: 'JavaScript',
 				link: '/JavaScript/',
 			},
 			{ text: 'Css', link: '/Css/' },
 			{ text: 'Node', link: '/Node/' },
-			{
-				text: 'JQuery',
-				link: '/JQuery/',
-			},
+			// {
+			// 	text: 'JQuery',
+			// 	link: '/JQuery/',
+			// },
 			{
 				text: 'React',
 				link: '/React/',
@@ -58,9 +58,14 @@ module.exports = {
 				link: '/Webpack/',
 			},
 			{
-				text: '运维架构',
-				link: '/Operation/',
+				text: '面试错题本',
+				link: '/front_interview/',
 			},
+			{ text: 'Java', link: '/Java/' },
+			// {
+			// 	text: '运维架构',
+			// 	link: '/Operation/',
+			// },
 			{
 				text: '了解更多',
 				items: [
@@ -106,6 +111,12 @@ module.exports = {
 			'vuepress-plugin-auto-sidebar',
 			{
 				sidebarDepth: 2,
+				title: {
+					mode: 'titlecase',
+				},
+				collapse: {
+					open: true,
+				},
 			},
 		],
 	],
