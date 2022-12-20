@@ -3,7 +3,7 @@ module.exports = {
 	title: 'Coderh',
 	// 描述
 	description:
-		'Coderh个人知识分享,更好的搭建技术框架',
+		'Coderh个人知识分享,更好的搭建知识框架',
 	// 主题
 	// theme: 'reco',
 	// 语言
@@ -13,7 +13,7 @@ module.exports = {
 		},
 	},
 	// 打包后的目录,所取的为默认字符串
-	dest: 'dist',
+	dest: 'build',
 	head: [
 		// 定义一些标签，会保存在 HTML 的<head>中
 		[
