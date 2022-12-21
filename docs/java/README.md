@@ -1,5 +1,5 @@
 ---
-title: Java
+title: 栏目浅语
 ---
 
 ## 为什么要学习 Java?
