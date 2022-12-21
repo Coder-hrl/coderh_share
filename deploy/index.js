@@ -122,6 +122,10 @@ const uploadZipBySSH = async () => {
     errorLog('上传失败!')
     process.exit() //退出流程
   }
+  // 删除本地的zip文件
+  fs.unlink(distZipPath, (err) => {
+    if (err) throw err
+  })
   loading.stop()
 }
 
@@ -136,6 +140,7 @@ const runUploadTask = async () => {
   await zipDist()
   //连接服务器上传文件
   await uploadZipBySSH()
+
   successLog('发布成功!')
   process.exit()
 }
