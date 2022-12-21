@@ -1,29 +1,29 @@
 {
-	"name": "coderh_share",
-	"version": "1.0.0",
-	"description": "a personal share acknowledge",
-	"main": "index.js",
-	"scripts": {
-		"start": "vuepress dev docs",
-		"build": "vuepress build docs",
-		"deploy": "yarn build && node ./deploy"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"devDependencies": {
-		"@vuepress/plugin-active-header-links": "^1.9.7",
-		"@vuepress/plugin-medium-zoom": "^2.0.0-beta.53",
-		"chalk": "^4.1.2",
-		"compressing": "^1.6.2",
-		"inquirer": "^8.1.4",
-		"node-ssh": "^13.0.0",
-		"ora": "^5.1.2",
-		"scp2": "^0.5.0",
-		"shelljs": "^0.8.5",
-		"ssh2": "^1.10 .0",
-		"vuepress": "^1.9.7",
-		"vuepress-plugin-auto-sidebar": "^2.3.2",
-		"vuepress-theme-reco": "^1.6.16"
-	}
+  "name": "coderh_share",
+  "version": "1.0.0",
+  "description": "a personal share acknowledge",
+  "main": "index.js",
+  "scripts": {
+    "start": "vuepress dev docs",
+    "build": "vuepress build docs",
+    "deploy": "node ./deploy"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@vuepress/plugin-active-header-links": "^1.9.7",
+    "@vuepress/plugin-medium-zoom": "^2.0.0-beta.53",
+    "chalk": "^4.1.2",
+    "compressing": "^1.6.2",
+    "inquirer": "^8.1.4",
+    "node-ssh": "^13.0.0",
+    "ora": "^5.1.2",
+    "scp2": "^0.5.0",
+    "shelljs": "^0.8.5",
+    "ssh2": "^1.10 .0",
+    "vuepress": "^1.9.7",
+    "vuepress-plugin-auto-sidebar": "^2.3.2",
+    "vuepress-theme-reco": "^1.6.16"
+  }
 }
