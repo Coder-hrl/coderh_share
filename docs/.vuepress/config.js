@@ -2,7 +2,7 @@ module.exports = {
   // 名称,用于SEO
   title: 'Coderh',
   // 描述
-  description: 'Coderh个人知识分享,更好的搭建知识框架',
+  description: 'Coderh前端知识分享,为了更好的搭建知识框架',
   // 主题
   // theme: 'reco',
   // 语言
@@ -73,10 +73,12 @@ module.exports = {
         link: '/SoftSkills/',
         items: [
           { text: '计算机网络', link: '/SoftSkills/network/' },
-          { text: '操作系统', link: '/SoftSkills/operateSystem/' },
           { text: '数据结构', link: '/SoftSkills/dataStructure/' },
+          { text: '操作系统', link: '/SoftSkills/operateSystem/' },
+          { text: '组成原理', link: '/SoftSkills/computerOrganization/' },
           { text: '设计模式', link: '/SoftSkills/designMode/' },
-          { text: '重构外加代码规范', link: '/SoftSkills/codeStandards/' },
+          { text: '重构技巧', link: '/SoftSkills/Refactoring/' },
+          { text: '代码规范', link: '/SoftSkills/codeStandards/' },
         ],
       },
       // {
