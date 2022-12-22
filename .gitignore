@@ -1,9 +1,12 @@
 node_modules
 .vscode
 build
+
+deploy
+
 .DS_Store
 *.log
-deploy
+
 
 
 npm-debug.log*

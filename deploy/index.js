@@ -140,8 +140,7 @@ const runUploadTask = async () => {
   await zipDist()
   //连接服务器上传文件
   await uploadZipBySSH()
-
-  successLog('发布成功!')
+  console.log(chalk.hex('#AADEE4').bold(`--------->  发布成功!  <---------`))
   process.exit()
 }
 
