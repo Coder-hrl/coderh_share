@@ -81,10 +81,15 @@ module.exports = {
           { text: '代码规范', link: '/SoftSkills/codeStandards/' },
         ],
       },
-      // {
-      // 	text: '运维架构',
-      // 	link: '/Operation/',
-      // },
+      {
+        text: '运维架构',
+        link: '/Operation/',
+        items: [
+          { text: 'nginx', link: '/Operation/nginx/' },
+          { text: 'linux', link: '/Operation/linux/' },
+          { text: 'docker', link: '/Operation/docker/' },
+        ],
+      },
       {
         text: '了解更多',
         items: [
