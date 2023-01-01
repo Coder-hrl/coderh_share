@@ -1,3 +1,7 @@
+---
+Title: Dom和Bom详解
+---
+
 ## Dom操作
 
 文档节点分为注释节点,文本节点,都继承自于Node节点类
@@ -12,7 +16,7 @@ HTMLElement又继承自于Element元素类,还具有文本类和attr其他属性
 
 类似 生物  ==> 哺乳类 ==> 等类概念
 
-#### document对象
+### document对象
 
 载入网站的实例对象,抽分成对象模型.,整个网页都是document对象
 
@@ -40,7 +44,7 @@ Document对象是全局对象,可以拿到所有Dom对象
 
 =============以上是获取Dom元素的方式========================
 
-###### 节点类型
+### 节点类型
 
 注释和普通文本都可以称之为一个节点 
 
@@ -48,7 +52,7 @@ Document对象是全局对象,可以拿到所有Dom对象
 
 也可以通过getElementById和getElementByTagName
 
-###### 节点特性  Node
+### 节点特性  Node
 
 通过导航去拿childNodes,然后使用索引去拿节点属性
 
@@ -66,8 +70,6 @@ attribute 元素特性,每个元素都有attribute
 
 分为标准的attribute 和非标准的attribute
 
-
-
 **元素对象里面的称之为property** 
 
 **在元素里面的属性称之为attribute** 
@@ -81,7 +83,7 @@ boxEl.value = "coderwhy"
 boxEl.setAttribute("value","coderwhy")
 ```
 
-###### 在JavaScript中动态修改样式
+### 在JavaScript中动态修改样式
 
 标准的attribute都可以通过元素对象的property中找到
 
@@ -89,10 +91,28 @@ boxEl.setAttribute("value","coderwhy")
 
 **box.classname** 进行动态修改
 
-###### 为什么不能使用class 而要使用classname呢?
+### 为什么不能使用class 而要使用classname呢?
 
 因为在ES6之前,class被称之为关键字的,所以使用classname用来代替class
 
 同时也有class列表,称之为classlist列表
 
 使用classlist.add 添加  .remove 删除  .troggle等方法属性
+
+### ClientWidth和offsetWidth
+
+clientWidth 拿到的**是内容的宽度**,contentWidth+padding的大小
+
+offsetWidth 则是**总的宽度**,包括scrollbar和border
+
+### document.documentElement
+
+获取到的是HTML的元素,我们可以使用scrollTop获取到滚动位置
+
+我们可以使用滚动位置和元素的offsetTop实现锚点跟随的效果
+
+还可以实现滚动到一定的区域出现特定的元素
+
+scrollTo(pageX,pageY),可以使用动态滚动,还可以添加behavior修饰符
+
+#### 有的时候使用hidden能更好代替display的展示

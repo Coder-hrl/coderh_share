@@ -34,27 +34,38 @@ module.exports = {
     nav: [
       // { text: 'Home', link: '/' },
       {
-        text: 'JavaScript',
-        link: '/JavaScript/',
+        text: '前端基础',
+        items: [
+          {
+            text: 'JavaScript',
+            link: '/JavaScript/',
+          },
+          { text: 'Css', link: '/Css/' },
+        ],
       },
-      { text: 'Css', link: '/Css/' },
-      // {
-      // 	text: 'JQuery',
-      // 	link: '/JQuery/',
-      // },
       {
-        text: 'React',
-        link: '/React/',
+        text: '前端框架',
+        items: [
+          {
+            text: 'React',
+            link: '/React/',
+          },
+          { text: 'Vue', link: '/Vue/' },
+        ],
       },
-      { text: 'Vue', link: '/Vue/' },
       {
-        text: 'TypeScript',
-        link: '/TypeScript/',
-      },
-      { text: 'Node', link: '/Node/' },
-      {
-        text: 'Webpack',
-        link: '/Webpack/',
+        text: '前端进阶',
+        items: [
+          {
+            text: 'TypeScript',
+            link: '/TypeScript/',
+          },
+          { text: 'Node', link: '/Node/' },
+          {
+            text: 'Webpack',
+            link: '/Webpack/',
+          },
+        ],
       },
       {
         text: '面试错题本',
