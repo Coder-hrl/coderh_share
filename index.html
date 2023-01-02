@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      height: 400px;
+      width: 400px;
+      background: linear-gradient(90deg, #fb3 1px, transparent 0), linear-gradient(#fb3 1px, transparent 0);
+      background-size: 42px 42px;
+    }
+
+    .box3 {
+      width: 400px;
+      height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .main {
+      width: 300px;
+      height: 300px;
+      position: relative;
+      background: hsla(0, 0%, 100%, .3);
+      overflow: hidden;
+    }
+
+    .main::before {
+      background: blue;
+    }
+
+    .main::before {
+      content: "";
+      position: absolute;
+      right: 0;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      z-index: -1;
+      filter: blur(20px);
+      margin: -30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+
+  </div>
+  <div class="box2"></div>
+
+  <div class="box">
+    <div class="main">
+      <div>ask;dk;laskd;askkjldkaslk </div>
+    </div>
+  </div>
+</body>
+
+</html>

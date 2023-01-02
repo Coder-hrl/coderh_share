@@ -86,7 +86,3 @@ grid-template-rows:repeat(2,100px)
 以grid-line来进行区分线,构成网格结构的分割线
 
 grid-trunk和grid-area  grid-gap,都是缩写属性
-
-### 移动端适配项目实现
-
-### 
