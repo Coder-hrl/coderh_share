@@ -37,3 +37,32 @@ console.log(result.next());
 // 一旦done为true,这个时候value就位undefined了
 // result 是一个迭代器对象,要使用Generator 生成器函数
 ```
+
+### 如何自己实现一个迭代器
+
+> 迭代器的本质上其实是调用 Symbol.iterator 这个方法，我们可以自定义实现这个方法
+
+```js
+class HyObject {
+	constructor(obj) {
+		this.obj = obj;
+	}
+	*[Symbol.iterator]() {
+		let length = 0;
+		const list = Object.keys(this.obj);
+		while (length < list.length) {
+			yield list[length++];
+		}
+	}
+}
+
+const obj = new HyObject({
+	12: 123,
+	123: 1234,
+	asdjkl: 123,
+});
+
+for (const iterator of obj) {
+	console.log(iterator);
+}
+```

@@ -2,13 +2,13 @@
 title: wxml详解和事件
 ---
 
-## WXML基本格式
+## WXML 基本格式
 
-类似HTML需要**严格闭合**,对**大小写敏感**,可以写成**单标签**或者**双标签**
+类似 HTML 需要**严格闭合**,对**大小写敏感**,可以写成**单标签**或者**双标签**
 
-### 小程序和Vue一样使用mustache语法
+### 小程序和 Vue 一样使用 mustache 语法
 
-使用**{{}}**的方式来展示js中的**data**属性
+使用**{{}}**的方式来展示 js 中的**data**属性
 
 ### wx:if
 
@@ -18,56 +18,56 @@ title: wxml详解和事件
 
 会自动出现两个属性,一个是**item**,另外一个则是**index**
 
-**在block标签上面**进行wx:for
+**在 block 标签上面**进行 wx:for
 
-#### Wx:for-item和wx:for-index这两个属性是可以进行重命名操作
+#### Wx:for-item 和 wx:for-index 这两个属性是可以进行重命名操作
 
-通常用于遍历数组,注意其中的**wx:key**是不需要使用{{}}的,直接会被找到item身上
+通常用于遍历数组,注意其中的**wx:key**是不需要使用{{}}的,直接会被找到 item 身上
 
-#### 何时使用*this这个关键字?
+#### 何时使用\*this 这个关键字?
 
-**保留关键字*this**代表在for循环中item本身,这种表示item本身是`item本身`或者`唯一的字符串`
+**保留关键字\*this**代表在 for 循环中 item 本身,这种表示 item 本身是`item本身`或者`唯一的字符串`
 
-或者使用wx:key=“{{index}}”,如果只是获取到item里面的值,无需使用**mustache**语法
+或者使用 wx:key=“{{index}}”,如果只是获取到 item 里面的值,无需使用**mustache**语法
 
 ### WXS
 
-> 是小程序的一套脚本语言,结合WXML,可以构建出页面的结构
+> 是小程序的一套脚本语言,结合 WXML,可以构建出页面的结构
 
-#### 为什么使用WXS?
+#### 为什么使用 WXS?
 
-因为在WXML中是不能直接调用Page/Component中定义的函数的
+因为在 WXML 中是不能直接调用 Page/Component 中定义的函数的
 
-但是在某些情况,我们可以希望使用函数来处理WXML中的数据
+但是在某些情况,我们可以希望使用函数来处理 WXML 中的数据
 
-**我们不可以直接调用定义在js中的函数在mustache语法中**
+**我们不可以直接调用定义在 js 中的函数在 mustache 语法中**
 
 如果需要对返回的数据进行处理一遍的话,第一种方案是
 
 1. **手动进行拼接**
-2. **在js中将所有数据处理好之后使用**
-3. **使用WXS方法**
+2. **在 js 中将所有数据处理好之后使用**
+3. **使用 WXS 方法**
 
 #### 缺点和限制
 
 - 不依赖运行时的基础库版本,可以在所有版本中运行
-- 不可以调用其他JavaScript中定义的函数,也不能调用小程序提供的API
-- 由于运行环境,IOS会比JavaScript运行速度快2-20倍,在android中无差异
+- 不可以调用其他 JavaScript 中定义的函数,也不能调用小程序提供的 API
+- 由于运行环境,IOS 会比 JavaScript 运行速度快 2-20 倍,在 android 中无差异
 
 #### 第一种写法 标签
 
 ```js
-function formatPrice(price){
-  return "$" + price
+function formatPrice(price) {
+	return '$' + price;
 }
 module.exports = {
-  formatPrice
-}
+	formatPrice,
+};
 ```
 
-#### 第二种写法则是使用mjs文件
+#### 第二种写法则是使用 mjs 文件
 
-> 注意所有的导出必须要使用Commonjs,ES module并不支持
+> 注意所有的导出必须要使用 Commonjs,ES module 并不支持
 
 ### 事件执行
 
@@ -83,7 +83,7 @@ module.exports = {
 | tap        | 手指触摸后马上离开 |
 | longpress  | 长按               |
 
-#### event属性
+#### event 属性
 
 | 属性          | 功能           |
 | ------------- | -------------- |
@@ -93,31 +93,31 @@ module.exports = {
 
 在冒泡事件中有的时候是父元素进行委托处理使用
 
-target属性是触发事件的元素
+target 属性是触发事件的元素
 
-currentTarget则是拿到处理触发事件的元素
+currentTarget 则是拿到处理触发事件的元素
 
-##### touch属性
+##### touch 属性
 
-**多指触摸**的时候就会产生多个点,这些点就会放到touches里面中
+**多指触摸**的时候就会产生多个点,这些点就会放到 touches 里面中
 
-##### data-* 
+##### data-\*
 
-> 是event中参数传递的方式,通过event.target.dataset里面的属性
+> 是 event 中参数传递的方式,通过 event.target.dataset 里面的属性
 >
-> 或者是通过event.currentTarget中触发得到的
+> 或者是通过 event.currentTarget 中触发得到的
 
-#### mark:*
+#### mark:\*
 
-> mark中target中的mark和currentTarget的mark会进行一个合并
+> mark 中 target 中的 mark 和 currentTarget 的 mark 会进行一个合并
 
-使用的mark的方式也可以传递这些值
+使用的 mark 的方式也可以传递这些值
 
-**注意:**mark是放到**event对象**中,而`dataset`则是放到**event.target对象**中
+**注意:**mark 是放到**event 对象**中,而`dataset`则是放到**event.target 对象**中
 
 #### catch
 
-catch可以阻止事件冒泡进一步的传递
+catch 可以阻止事件冒泡进一步的传递
 
 ### 组件化思想
 
@@ -125,13 +125,13 @@ catch可以阻止事件冒泡进一步的传递
 >
 > 会造成重复代码,对后期维护极其困难,对代码结构非常难以理解
 >
-> 在微信小程序中如果使用Component的话,请在**json**文件中使用
+> 在微信小程序中如果使用 Component 的话,请在**json**文件中使用
 >
-> **Component设置为true**的方式
+> **Component 设置为 true**的方式
 
 存在**内置组件**和**自定义组件**,
 
-Component中也是有四个文件的,在**引用一个自定义组件的时候,需要在json文件中声明**
+Component 中也是有四个文件的,在**引用一个自定义组件的时候,需要在 json 文件中声明**
 
 **自定义组件也是可以引入其他的自定义组件的**
 
@@ -139,19 +139,19 @@ Component中也是有四个文件的,在**引用一个自定义组件的时候,�
 
 组件内部影响不到外部组件
 
-外部组件使用class的样式只会对外部有效,对内部不会生效
+外部组件使用 class 的样式只会对外部有效,对内部不会生效
 
-外部使用标签选择器,会影响到内部组件的使用(不建议使用id和标签选择器)
+外部使用标签选择器,会影响到内部组件的使用(不建议使用 id 和标签选择器)
 
-是存在options属性的,可以配置是否**进行样式隔离**
+是存在 options 属性的,可以配置是否**进行样式隔离**
 
 ```js
 Component({
-  options:{
-    //是否采用样式隔离
-    styleIsolation:""
-  }
-})
+	options: {
+		//是否采用样式隔离
+		styleIsolation: '',
+	},
+});
 ```
 
 #### 组件间的通信
@@ -160,7 +160,7 @@ Component({
 
 组件内是存在两种数据类型的,是**properties**和**data**两种方式
 
-一个是props,另外一个则是组件内部使用的data数据
+一个是 props,另外一个则是组件内部使用的 data 数据
 
 ```js
 properties:{
@@ -178,26 +178,26 @@ data:{
 
 1. 在子组件中**触发**一个函数,使用**this.triggerEvent()**来发送事件
 2. 在父组件中使用**bind:事件名** =` ""`
-3. 然后传递到了数据,可以从event.detail拿到数据
+3. 然后传递到了数据,可以从 event.detail 拿到数据
 
 与**React**和**Vue**对比
 
 **React:**
 
 1. 在**父组件中声明一个函数**,同时用一个函数来响应`emit(概述)`之后的事件
-2. 在**props中取到这个函数**,在参数中放置需要传递的值
+2. 在**props 中取到这个函数**,在参数中放置需要传递的值
 3. 在需要触发的时候触发这个函数,**父组件在参数中直接去取**
 
 **Vue:**
 
 1. 在子组件中触发一个函数,使用**this.$emit**或者使用**emit**来传递这个函数
-2. 在父组件中直接使用@外加emit的事件名 = `“”`
+2. 在父组件中直接使用@外加 emit 的事件名 = `“”`
 3. 父组件直接从**参数中去取**
 
-如果去取properties里面的值的时候
+如果去取 properties 里面的值的时候
 
-我们需要使用**this.properties来取到这个里面的值**
+我们需要使用**this.properties 来取到这个里面的值**
 
 #### 插槽的使用
 
-#### Component构造器
+#### Component 构造器
