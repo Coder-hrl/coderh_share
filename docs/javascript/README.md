@@ -1,3 +1,15 @@
+---
+title: 栏目浅语 
+---
+
+## 职业规划
+
+总的核心是 **一专多精** 
+
+以前端技术`(Web,小程序,App,大屏等前端技术)`为核心
+
+以后端技术`(java,node,springboot,mysql)`等和运维技术`(linux,docker,nginx,jenkins)`等为辅助
+
 ## javascript 补充知识
 
 > 命令式编程和声明式编程的区别在与,命令式是说一下做一下,注重过程
