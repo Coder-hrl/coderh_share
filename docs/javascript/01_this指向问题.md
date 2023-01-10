@@ -101,7 +101,7 @@ const result = nums.forEach(item=>{}).filter((item,index)=>{}}
 
 ### 箭头函数的 this
 
-> 不绑定 this,只是箭头函数外层决定 this
+> 不绑定 this,只是箭头函数外层函数的 this 决定 this
 
 箭头函数中就是没有 this,就是变量寻找的问题,
 
