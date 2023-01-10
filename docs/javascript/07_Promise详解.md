@@ -90,7 +90,7 @@ Iterator-Generator 迭代器操作
 
 一旦 done 为 true,value 为 undefined,代表这个迭代器对象已经遍历完了
 
-###### 使用迭代对象 数组
+### 使用迭代对象 数组
 
 ```js
 const createArrayIteractor = {
@@ -114,6 +114,8 @@ const createArrayIteractor = {
 ###### 迭代器 可迭代对象
 
 **自己实现一个迭代对象**
+
+迭代器的本质，其实就是调用函数的`Symbol.iterator`方法,我们可以自己去实现这个方法
 
 ```js
 const infos = {
