@@ -1,12 +1,16 @@
+---
+title: Promise、生成器和迭代器
+---
+
 ## Promise 的实现
 
-#### Promise
+### Promise
 
 then 方法的返回值
 
 Promise.then() Promise.catch()方法
 
-###### promise.then 函数方法本身就是返回一个新的 promise 的
+#### promise.then 函数方法本身就是返回一个新的 promise 的
 
 这个 promise 的 resolve 和 rejecte 是需要自己来定义的
 
@@ -14,13 +18,13 @@ Promise.then() Promise.catch()方法
 
 promise 是支持链式调用的
 
-###### promise 所处的状态
+#### promise 所处的状态
 
 会等待之前的状态
 
 resolve 要有不同的区别
 
-###### 重复调用 Promise.then(),这是因为 promise 的方法 返回值是返回一个 promise 的
+#### 重复调用 Promise.then(),这是因为 promise 的方法 返回值是返回一个 promise 的
 
 promise 本身是支持链式调用的
 
@@ -36,9 +40,9 @@ fuifilled
 
 rejected
 
-###### finally 无论 Promise 是成功还是失败,一定会执行这个回调的
+#### finally 无论 Promise 是成功还是失败,一定会执行这个回调的
 
-###### Promise 的类方法
+### Promise 的类方法
 
 Promise.all(),Promise.race(),Promise.resolve(),Promise.then()
 
@@ -69,8 +73,6 @@ Promise.reject()
 **any 方法**,Promise.any 方法,他会等到只要有一个 Promise 有成功结果的时候调用这个函数
 
 如果所有的 Promise 都是 reject 的话,就会报一个错误
-
-###### 执行顺序 微任务/宏任务/事件队列
 
 #### 迭代器
 
