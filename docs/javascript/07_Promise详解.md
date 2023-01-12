@@ -202,10 +202,33 @@ function* create(arr) {
 
 yield\* 去迭代其中的一个值,但是这个值一定是可以被迭代的
 
-##### await 和 async 就是使用了 yield 和 async,在里面使用的是非常多的
+### await 和 async 就是使用了 yield 和 async,在里面使用的是非常多的
 
 `[Symbol.iterator](){}`
 
-###### 迭代器中断执行
+### 迭代器中断执行
 
 使用 return,throw 和 break 等关键字都可以中断使用
+
+### setTimeout 查询的变量查询顺序
+
+```js
+function sayHi(person) {
+	const name = person.name;
+	setTimeout(() => {
+		alert('Hello, ' + name);
+	}, 3000);
+}
+
+let someone = { name: 'Dan' };
+sayHi(someone);
+
+someone = { name: 'Yuzhi' };
+sayHi(someone);
+
+someone = { name: 'Dominic' };
+sayHi(someone);
+```
+
+在以上这个例子中，在每一次调用 sayHi 方法的时候，都会带着当前可查询到的 someone 对象进去
+当执行到 `setTimeout`的时候，会放到异步序列中，此时的 name 已经确定了
