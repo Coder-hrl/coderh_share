@@ -74,3 +74,11 @@ display 属性规定元素应该生成的框的类型；position 属性规定元
 **利用 CSS Sprites 能很好地减少网页的 http 请求，从而大大的提高页面的性能**
 
 CSS Sprites 能减少图片的字节。
+
+### offsetTop 和 offsetLeft
+
+**offsetTop 和 offsetRight**都是以最近的定位元素为 offsetParent 元素
+
+其次对于 position 不为 relative 的元素，他的父级元素可能是最近的 tr 元素
+
+我们可以手动设置为 position 为 relative 让其与最近的定位元素对比
