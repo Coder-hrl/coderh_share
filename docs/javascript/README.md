@@ -1,10 +1,10 @@
 ---
-title: 栏目浅语 
+title: 栏目浅语
 ---
 
 ## 职业规划
 
-总的核心是 **一专多精** 
+总的核心是 **一专多精**
 
 以前端技术`(Web,小程序,App,大屏等前端技术)`为核心
 
@@ -257,12 +257,9 @@ function foo(num1, num2, fn) {
 
 ```js
 const hd = [1, 21, 24, 18];
-let total = hd.reduce(
-	(preValue, item) => {
-		return preValue + item;
-	},
-	0,
-); // 这个为初始值0,返回值total为相加后的结果
+let total = hd.reduce((preValue, item) => {
+	return preValue + item;
+}, 0); // 这个为初始值0,返回值total为相加后的结果
 ```
 
 ##### 闭包的定义
@@ -323,9 +320,7 @@ foo = null;
 ##### 快速创建一个高内存的数组
 
 ```js
-const arr = new Array(1024 * 1024).fill(
-	1,
-);
+const arr = new Array(1024 * 1024).fill(1);
 // js引擎进行了优化,所以小于2的32次方的都只是占4个字节
 // 一个整数为4位   1024*4 = 4kb*1024 = 4M
 ```
@@ -346,13 +341,9 @@ const arr = new Array(1024 * 1024).fill(
 4. 构造函数中的 new 关键字
 
 ```js
-const box =
-	document.querySelector('div');
+const box = document.querySelector('div');
 box.onclick = function () {}; // 只能给元素添加一个事件
-box.addEventListener(
-	'click',
-	function () {},
-);
+box.addEventListener('click', function () {});
 ```
 
 可以给数组中的`forEach和map`等函数,都是可以可以传入`第三个参数`为绑定的 this
@@ -693,7 +684,10 @@ function create(o) {
 
 就跟[]的`__proto__`是 Array 一样,他另外一个显示原型则是 foo.prototype
 
-##### Class 类 是构造函数和原型链的语法糖
+### Class 类 是构造函数和原型链的语法糖
+
+> 并不是一个新的类型方法，同时一个类会存在原型对象和实例对象，具体的指向是
+> 类的 prototype(原型)指向原型对象，原型对象的 constructor(构造方法)指向类 实例对象的**proto**指向原型对象
 
 ```js
 // Typeof 类 function 可读性较强
@@ -729,13 +723,13 @@ class libai extends Person {
 }
 ```
 
-##### webpack (tree-shaking)
+### webpack (tree-shaking)
 
 当一行代码从来没有被用过的话,他会在 babel 转换后自动被清除掉
 
 bookMarks
 
-##### class 继承内置类
+### class 继承内置类
 
 javascript 只能实现单继承,不能实现多继承
 
@@ -745,13 +739,13 @@ class my extends Array {
 }
 ```
 
-##### 类多态
+### 类多态
 
 1. 必须有继承,
 2. 必须有子类重写父类方法
 3. 必须父类引用指向子类对象
 
-###### let const
+### let const
 
 ```js
 console.log(name);
@@ -766,7 +760,7 @@ let name = 'libai';
 console.log(name); // name define property
 ```
 
-##### 模板字符串``
+### 模板字符串``
 
 ```js
 `this.name${name}`;
@@ -779,7 +773,7 @@ foo`hello${name} world`;
 // 第一个参数是[hello,world] 第二个参数是name
 ```
 
-##### 默认参数
+### 默认参数
 
 **在进行对象解构的时候,要以 const obj1 = ({ name, age } = { name: 'libai', age: 21 })**
 
@@ -798,7 +792,7 @@ function foo({name,age} = { name:'libai',age:12 }){}
 foo({ name:'kate',age:14 })
 ```
 
-##### 函数的剩余参数补充
+### 函数的剩余参数补充
 
 restparamter 以...为前缀,他会将`剩余参数放到一个数组里`,包含`未匹配的形参`
 
@@ -811,7 +805,7 @@ foo('liabi', 12, 34, 12, 11);
 // name是  libai     list则是一个数组[12,34,12,11]
 ```
 
-##### 箭头函数
+### 箭头函数
 
 箭头函数的 prototype 是指向 undefined 的,没有显示原型,但是是具有隐式原型的,他的**proto**也是指向 Function 的
 
@@ -821,7 +815,7 @@ foo('liabi', 12, 34, 12, 11);
 // 函数名.apply(绑定的this,传入的参数)
 ```
 
-##### es6 的展开语法的使用(没什么好写的)
+### es6 的展开语法的使用(没什么好写的)
 
 ```js
 const arr = ['anme', 'age'];
@@ -834,7 +828,7 @@ console.log(...name); // 'n' 'a' 'm' 'e'
 
 浅拷贝是指无法复制对象内部中`引用类型的堆内存`的,他只是复制了一个`内存地址`
 
-##### es6 中表示数值的方式
+### es6 中表示数值的方式
 
 ```js
 const 二进制 = 0b100;
@@ -842,7 +836,7 @@ const 八进制 = 0o100;
 const 十六进制 = ox100;
 ```
 
-##### symbol 独一无二的标识
+### symbol 独一无二的标识
 
 **注意不需要加 new,他是一个基础数据类型**
 
@@ -857,11 +851,11 @@ const key = Symbol.keyfor(s1);
 
 obj.name 是通过字符串 name 来查找的
 
-###### 之前的存储方式
+### 之前的存储方式
 
 对象和数组,在 es6 又新增了两个数据解构,set 和 map
 
-##### Set 基本使用
+### Set 基本使用
 
 不允许元素的重复,对于引用类型的重复是指引用地址的重复
 
@@ -884,7 +878,7 @@ set.forEach(item => {
 });
 ```
 
-###### WeakSet 只能存放对象类型
+### WeakSet 只能存放对象类型
 
 ```js
 // weakSet只能存放对象类型,不能存放普通数据类型
@@ -893,7 +887,7 @@ const weakSet = new weakSet();
 // 当引用清除的时候,如果只剩下weakSet存储这对象的引用,也是会被清除的
 ```
 
-##### Map 可以存储对象为键
+### Map 可以存储对象为键
 
 ```js
 const map = new Map([]);
@@ -902,7 +896,7 @@ map.delete();
 map.has();
 ```
 
-##### ES6 中 includes
+### ES6 中 includes
 
 ```js
 // 在indexof里面是无法判断有没有NaN的
@@ -911,20 +905,20 @@ const arr = [12, 11, 32];
 arr.includes(12, 起始的索引);
 ```
 
-##### es7 中的运算符
+### es7 中的运算符
 
 ```js
 // Math.row()指数运算符
 // 2**2 2的二次方
 ```
 
-##### Object.values()提供所有的 value 值
+### Object.values()提供所有的 value 值
 
 `Obejct.keys()`获得里面所有的 key 值拿到的所有的值都是`数组`类型的
 
 `Object.entries()`获得一个数组,分别是键数组和值数组
 
-##### String Padding
+### String Padding
 
 前后填充,`padStart(),padEnd()`
 
@@ -932,10 +926,10 @@ arr.includes(12, 起始的索引);
 padStart(10,'')  前一个是指填充到多少字符,另外一个就是填充的东西
 ```
 
-##### flat 降维降调
+### flat 方法对多维数组降维
 
 ```js
-flat(infinitfy);
+flat(infinitfy); // 无论是几维数组   都降至一维数组
 flatMap(e => e.split(','));
 ```
 
@@ -1033,11 +1027,7 @@ const newProxy = new Proxy(obj, {
 ##### Reflect 的 construct 方法
 
 ```js
-Reflect.construct(
-	目标类,
-	参数,
-	需要被new的类,
-);
+Reflect.construct(目标类, 参数, 需要被new的类);
 ```
 
 ##### 响应式
@@ -1055,9 +1045,7 @@ promise 的出现是为了解决`回调地狱`
 then 方法也是有返回值的,返回值也是一个 promise 对象,链式调用
 
 ```js
-new Promise()
-	.then(res => {})
-	.then(res => {});
+new Promise().then(res => {}).then(res => {});
 // return 出来的值指的是下一层then的res值
 ```
 
@@ -1117,11 +1105,7 @@ setTimeOut 是宏任务,同时也可以使用 queueMicrotask
 存在`done和value`两个属性,当迭代器结束之后`done返回一个true,说明迭代完毕`
 
 ```js
-const names = [
-	'janmes',
-	'kate',
-	'youyou',
-];
+const names = ['janmes', 'kate', 'youyou'];
 // return value:'janmes',done:false
 // return value:'kate',done:false
 // return value:'youyou',done:false
