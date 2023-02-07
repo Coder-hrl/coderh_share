@@ -1,46 +1,62 @@
-##### NodeJS基础
+---
+Title: fs和event模块的开发
+---
 
-##### 基础知识
+## NodeJS是什么
 
-##### 模块化开发
+HTML和CSS是由Blink进行解释的,Node则可以来进行服务端开发
 
-##### webpack
-
-##### VueCli/ReactCli=>webpack
-
-##### Git源代码管理工具(版本控制工具)
-
-****
-
-###### NodeJS是什么
-
-HTML和CSS是由Blink来进行开发
-
-NodeJs是在谷歌V8引擎上运行JavaScript的运行环境,也是通过libuv来进行事件循环的
+NodeJs是在谷歌V8引擎上运行JavaScript的运行环境,也是通过libuv**(C语言开发)**来进行事件循环的
 
 在浏览器上是多了一个支持操作浏览器的API,浏览器拥有自己的事件循环
 
-###### fs.readFile
+### 文件系统模块  内置模块fs
+
+> 1. 服务器需要存储各种数据和文件放置到不同的位置
+> 2. 用户数据大多放到数据库中
+> 3. 某些配置文件或者用户资源是以文件的形式 存在于操作系统上
+> 4. 借助Node 我们可以在任何操作系统去操作文件 无需考虑跨平台
+
+#### fs.readFile  读取文件
+
+用于文件模块中的读取操作
+
+```js
+const fs  = require("fs")
+fs.readFile("./",{},(data,error)=>{
+  console.log(data)
+})
+```
+
+
 
 NodeAPI事件循环,应用绑定,文件系统读写和网络IO
 
-###### 对NodeJS的要求还是有的
+#### 服务器开发
+
+使用编程语言编写一个应用来处理客户端的请求,并返回客户端想要的数据
+
+客户端会有 **Android端,IOS端,iphone端,ipad端,网页端,mac端,window端**
+
+### 对NodeJS的要求还是有的
 
 Node包管理的形式进行管理
 
-###### npm  yarn  pnpm
+### Node常见的包管理工具
+
+yarn  npm pnpm 三种包管理工具
 
 使用NodeJs作为web服务器开发,中间件,代理服务器
 
 借助NodeJS完成前后端渲染同构应用
 
-###### Node所使用的版本工具
+### Node版本切换工具
 
 是可以在电脑上安装多个版本的,使用nvm或者n工具来进行管理版本
 
 防止Node版本过高,或者过低导致项目无法启动
 
-###### Node当中是有window和console和global对象的
+### Node当中是有window和console和global对象的
 
 `__dirname和__fileName`都是属于全局对象上面的方法
 
@@ -50,13 +66,13 @@ process.nextTick()
 
 setImmediate(()=>{})
 
-##### globalThis也是指向全局对象的
+### globalThis也是指向全局对象的
 
 很多属性都放到global中,而在window中很多都放到了window中
 
 为了减去这段差距,新标准通过globalThis统一说法
 
-##### 认识模块化开发
+### 认识模块化开发
 
 划分成一个个小的结构,编写属于自己的逻辑代码和作用域
 
@@ -64,9 +80,9 @@ setImmediate(()=>{})
 
 也可以进行导入结构的变量和函数
 
-##### CommonJS和Node
+### CommonJS和Node
 
-##### module.exports
+### module.exports
 
 使用立即执行函数
 
@@ -88,17 +104,17 @@ exports是一个对象,我们可以在对象里面添加很多属性,他是和mo
 
 会进行覆盖操作
 
-##### 模块化的变量 导入和导出是同步的
+### 模块化的变量 导入和导出是同步的
 
 require()本质,做了一个引用赋值的方式
 
-#####  常量是直接复制,而复杂数据类型则是使用对象的地址类型
+###  常量是直接复制,而复杂数据类型则是使用对象的地址类型
 
 引用赋值
 
 module才是真正导出的实现者
 
-##### require查找规则   先是按照 实名   js  json Node 的方式去查找
+### require查找规则   先是按照 实名   js  json Node 的方式去查找
 
 Node提供的内置模块名称
 
