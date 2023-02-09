@@ -47,7 +47,7 @@ module.exports = {
 				],
 			},
 			{
-				text: '前端框架',
+				text: '前端进阶',
 				items: [
 					{
 						text: 'React',
@@ -57,11 +57,6 @@ module.exports = {
 						text: 'Vue',
 						link: '/Vue/',
 					},
-				],
-			},
-			{
-				text: '前端进阶',
-				items: [
 					{
 						text: 'TypeScript',
 						link: '/TypeScript/',
@@ -98,6 +93,10 @@ module.exports = {
 				items: [
 					{
 						text: 'Java基础',
+						link: '/Java/JavaSE/',
+					},
+					{
+						text: 'Java编程思想',
 						link: '/Java/JavaSE/',
 					},
 				],
