@@ -1,3 +1,7 @@
+---
+title: Koa
+---
+
 ## Koa 详解
 
 > 默认导出一个类,使用
@@ -27,15 +31,12 @@
 > 通过`ctx.request.url,query,params等数据`
 >
 > ```js
-> userRouter.get(
-> 	'./:id',
-> 	(ctx, next) => {
-> 		// params取到的是 :后面的内容
-> 		console.log(ctx.request.params);
-> 		console.log(ctx.request.query);
-> 		// query指的是 ? 以后的内容
-> 	},
-> );
+> userRouter.get('./:id', (ctx, next) => {
+> 	// params取到的是 :后面的内容
+> 	console.log(ctx.request.params);
+> 	console.log(ctx.request.query);
+> 	// query指的是 ? 以后的内容
+> });
 > ```
 
 > 使用 koa-bodyparser,下载安装`npm install koa-bodyparser`
@@ -110,11 +111,7 @@ Express 处理异步数据有点问题,无法实现返回异步数据,可以通�
 const midlewarea1 = () => {};
 const midlewarea2 = () => {};
 const midlewarea3 = () => {};
-app.use(
-	midlewarea1,
-	midlewarea2,
-	midlewarea3,
-);
+app.use(midlewarea1, midlewarea2, midlewarea3);
 ```
 
 Koa 中则不一样

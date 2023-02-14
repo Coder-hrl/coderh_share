@@ -1,3 +1,7 @@
+---
+title: npm 包详解
+---
+
 ## npm 包详解
 
 `npm包下载,我们可以上传到github上面`
@@ -22,12 +26,26 @@ Private:true 通过设置这个,是无法发布的,设置为私人,scripts,里�
 
 可以通过设置镜像来改变下载速度,对于我这种玩家就没事啦
 
-###### Vue config js
+### Vue config js
 
 可以在配置文件做一些封装配置的
 
-###### element-ui router store 都是需要自己配置的
+### element-ui router store 都是需要自己配置的
 
 但是如果我们从架构师的角度思考问题,则需要自己写一个项目模板.
 
 `自己搭一个更适合自己项目的脚手架`，通过开源然后使用`npm install coderwhy`
+
+### 开发一个脚手架
+
+使用`npm link` 进行链接操作
+
+bin 里面有一个 h 命令,他是可以去`执行index.js的`
+
+### 暂时所依赖的库
+
+1. `commander` 对命令行的操作进行跟踪和自定义
+
+2. `download-git-repo` 下载模板来供脚手架使用
+
+   帮助我们在回调函数里面取到东西,可以给他封装一个 promise
