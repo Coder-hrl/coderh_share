@@ -60,4 +60,4 @@ Node 里面不同的模块是由不同的语言来编写的,有`C++(68%),JavaScr
 
 有一个`process`进程对象,`process.nextTick`
 
-###### 使用 Node 可以进行一些个性化的脚手架搭建
+### Node 是学习 JavaScript 前端高级必须的知识
