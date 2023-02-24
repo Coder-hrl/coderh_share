@@ -8,7 +8,7 @@
 
 在 es6 之前用的是**function 模式**,后来为了让 es6 的人适应就是用`class语法糖定义类`
 
-###### 类中含有 constructor 构造器 通过 new 来进行调用
+### 类中含有 constructor 构造器 通过 new 来进行调用
 
 **实例对象里面的 this 指向的是 new 之后的对象**
 
@@ -20,7 +20,7 @@ Es6 之后的类会更加的方便,不需要添加一个臃肿的`prototype`
 
 而在箭头函数中 this 则是由定义的位置来决定的.
 
-##### 类中的继承,封装,继承,多态.
+### 类中的继承,封装,继承,多态.
 
 `封装` 将逻辑代码封装到一个类中
 
@@ -34,17 +34,17 @@ Es6 之后的类会更加的方便,不需要添加一个臃肿的`prototype`
 
 3. 降低在运行前检测出错误的概率
 
-##### this 的用处
+### this 的用处
 
 当类中的多态,指不同的对象,调用相同的方法,会出现不同的效果.
 
-##### 必须调用 super()
+### 必须调用 super()
 
 在 React 中必须要调用`super()`来初始化父类 Component 对象.
 
-##### 必须要在 script 里面使用 type= text/babel
+### 必须要在 script 里面使用 type= text/babel
 
-##### map 函数
+### map 函数
 
 **第一个参数是回调函数**,第二个参数是给**回调函数绑定 this**
 
@@ -56,9 +56,7 @@ this.state.movies.map(item => {
 });
 ```
 
-```md
 注意点,第一是 他默认返回一个数组,第二个也是在<li></li>里面需要有{}来标识
-```
 
 React 是比 Vue 比较灵活的,在 Vue 中`template是比较固定的`
 
@@ -93,16 +91,16 @@ render(){
 {/*使用拼接符*/}
 {firstname+''+lastname}
 {/* 运算符的使用 */}
-{1+234}
+{1 + 234}
 {/* 三元表达式 */}
 {flag ? "" : ""}
 {/* 调用当前的函数 */}
 {this.page()}
 ```
 
-##### 也可以在 render 函数到 return 中间使用结构或者其他运算
+### 也可以在 render 函数到 return 中间使用结构或者其他运算
 
-##### react中jsx 的本质原理是通过 React.createElement,然后在其中再传入 props 和其他属性,使用的是 js 创建 createElement 的方式
+### react 中 jsx 的本质原理是通过 React.createElement,然后在其中再传入 props 和其他属性,使用的是 js 创建 createElement 的方式
 
 ```js
 React.createElement(type, config);
@@ -111,18 +109,18 @@ React.createElement(type, config);
 // 都会使用React.createElement的方法来创建一个元素
 ```
 
-所有的jsx都会被转换为React.createElement的函数
+所有的 jsx 都会被转换为 React.createElement 的函数
 
-`type config 和children`三种属性,type是指创建元素的类型(span,div,p等),config是指创建元素的属性(classname,title),children是指创建的元素值
+`type config 和children`三种属性,type 是指创建元素的类型(span,div,p 等),config 是指创建元素的属性(classname,title),children 是指创建的元素值
 
-会创建出来一个ReactElement对象,通过树的形式,再构成虚拟DOM
+会创建出来一个 ReactElement 对象,通过树的形式,再构成虚拟 DOM
 
-先是转换为虚拟Dom,多平台适用也是从这里出现的,`可以渲染成Pc端,也可以渲染成App和Ios端React-Native的`
+先是转换为虚拟 Dom,多平台适用也是从这里出现的,`可以渲染成Pc端,也可以渲染成App和Ios端React-Native的`
 
-Virtual Dom UI`以一种虚拟化,或者说理想化的形式保存在内存中`,在真正渲染的时候,通过ReactDom render 同步起来
+Virtual Dom UI`以一种虚拟化,或者说理想化的形式保存在内存中`,在真正渲染的时候,通过 ReactDom render 同步起来
 
-##### 让React页面更新的几种方式
+### 让 React 页面更新的几种方式
 
-1. 使用useState
-2. 父传子props发生改变
-3. 子传父emit事件的发生
+1. 使用 useState
+2. 父传子 props 发生改变
+3. 子传父 emit 事件的发生
