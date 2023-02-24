@@ -1,5 +1,5 @@
 ---
-title: 详细解释BFC
+title: BFC详解
 ---
 
 # BFC 块级格式化上下文
@@ -57,9 +57,9 @@ BFC**包含创建他的元素的所有子元素**，但是**不包含创建新�
 
 ```css
 .box::after {
-	content: '';
-	clear: both;
-	display: block;
+  content: '';
+  clear: both;
+  display: block;
 }
 ```
 
