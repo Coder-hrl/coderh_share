@@ -34,13 +34,13 @@ Ul 以`jsx`来描述,以`state`来存储组件里面的状态,听过 setState �
 
 - 学习 react-hooks 来学习 react 的思想
 
-#### 学习 React
+### 学习 React
 
 在`getElementByTagName`方式和`querySelector`方式中获取的元素也不同
 
 一步步的命令进行操作,称之一个命令式编程
 
-###### 依赖三个库 因为 react-native 所以拆分成了三个库
+### 依赖三个库 因为 react-native 所以拆分成了三个库
 
 `react` 核心代码库,react 和 react-native 共同的代码.
 
@@ -48,23 +48,23 @@ Ul 以`jsx`来描述,以`state`来存储组件里面的状态,听过 setState �
 
 `babel` 将 jsx 编译解析为 js 文件,目前还有**@babel/preset-typescript,@babel/preset-env,@babel/preset-react**
 
-###### 引入方式
+### 引入方式
 
 1. CDN 引入
 2. 下载库本地引用
 3. npm 包,脚手架下引用
 
-###### 默认导出一个 ReactDOM
+### 默认导出一个 ReactDOM
 
 可以通过`ReactDOM.render()`来渲染一个函数
 
 第一个参数是渲染的对象,第二个则是需要挂载的对象
 
 ```js
-<script type="text/babel">
-  // 里面存在一个ReactDOm的对象 const app = document.querySelector('#app'); //
-  需要使用里面的render函数,第二个对象则为挂载对象 ReactDOM.render(
-  <h2>hello world</h2>, app)
+<script type='text/babel'>
+	// 里面存在一个ReactDOm的对象 const app = document.querySelector('#app'); //
+	需要使用里面的render函数,第二个对象则为挂载对象 ReactDOM.render(
+	<h2>hello world</h2>, app)
 </script>
 ```
 
@@ -83,19 +83,19 @@ Ul 以`jsx`来描述,以`state`来存储组件里面的状态,听过 setState �
 
 ```js
 function render() {
-  ReactDOM.render(
-    <div>
-      <h2>{message}</h2>
-      <button onClick={test}>点我进行改变</button>
-    </div>,
-    app
-  )
+	ReactDOM.render(
+		<div>
+			<h2>{message}</h2>
+			<button onClick={test}>点我进行改变</button>
+		</div>,
+		app,
+	);
 }
 // 每次进行函数操作的时候需要手动进行render()
-render()
+render();
 ```
 
-##### 类组件化实现
+### 类组件化实现
 
 将自己所写的代码放到 class 类中,进行封装,需要 super 继承,后声明初始值 this.state 来进行实现
 
@@ -133,20 +133,20 @@ render()
 
 ```js
 this.state = {
-  message: 'libai',
-}
+	message: 'libai',
+};
 // 这两个方法都是固定的,不能随便取名字
 // 同时this.setState是一个函数方法
 this.setState({
-  name: 'qingfengwuya',
-})
+	name: 'qingfengwuya',
+});
 ```
 
 注意这个 setState 在进行操作对象等复杂属性时,因为引用地址的存在,React 是不清楚数据是否发生了改变,需要来**进行浅拷贝来告诉 React 已经发生了改变**
 
-#### Jsx 语言在通过 babel 转换之后是默认添加“use static”开启严格模式,所有的 this 是被转换为 undefined 的
+### Jsx 语言在通过 babel 转换之后是默认添加“use static”开启严格模式,所有的 this 是被转换为 undefined 的
 
-#### 为什么类中的方法 this 是指向 undefined,因为函数的 this 是动态的,在调用时才会确认 this,对象调用是调用隐式绑定的 this 的
+### 为什么类中的方法 this 是指向 undefined,因为函数的 this 是动态的,在调用时才会确认 this,对象调用是调用隐式绑定的 this 的
 
 注意在 React 渲染数组中,可以使用数组的 map 返回新数组的方法来进行渲染,但是我还是希望将大层面的数据处理和 HTML 渲染分开,保持上方数据处理,下方视图尽量只是用来渲染.
 
@@ -157,7 +157,7 @@ this.setState({
 > 是嵌入到 js 中的一种语法方式
 
 ```jsx
-const apple = <div>{}</div>
+const apple = <div>{}</div>;
 ```
 
 1. 在事件绑定中使用 on 外加驼峰的方式声明事件的方式
@@ -168,6 +168,6 @@ const apple = <div>{}</div>
 6. 可以插入相对应的表达式来进行展示,在日常开发中三元表达式比较多,是返回表达式的结果
 7. jsx 中绑定属性,关于属性是如何绑定的,我们可以使用{}的方式来统一进行数据绑定
 
-#### 什么情况下使用<></> 什么情况下 使用 Fragment ,什么情况下使用 div 呢
+### 什么情况下使用<></> 什么情况下 使用 Fragment ,什么情况下使用 div 呢
 
-经实践操作之后,添加 key 时,使用 fragement,什么都不操作,使用<></>,在添加 className 和 id 等属性和事件时,是需要使用 div 的,因为 Fragment 中没有这个属性
+经实践操作之后,**添加 key 时,使用 fragement,什么都不操作,使用<></>,在添加 className 和 id 等属性和事件时,是需要使用 div 的**
