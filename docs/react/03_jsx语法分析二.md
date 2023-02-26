@@ -1,3 +1,7 @@
+---
+title: Jsx语法分析
+---
+
 ## jsx 语法分析二
 
 > `for会使用htmlFor`
@@ -24,8 +28,8 @@ react 事件绑定,使用 this 绑定问题,`属性绑定undefined`
 
 ```js
 class Person {
-	// 使用箭头语法值
-	say = () => {};
+  // 使用箭头语法值
+  say = () => {}
 }
 ```
 
@@ -33,9 +37,10 @@ class Person {
 
 ```jsx
 <button
-	onClick={e => {
-		this.say();
-	}}></button>
+  onClick={(e) => {
+    this.say()
+  }}
+></button>
 ```
 
 我们也可以拿到 event 对象,在函数中.
@@ -44,18 +49,9 @@ class Person {
 
 ```js
 {
-	this.state.movies.map(
-		(item, index, arr) => {
-			return (
-				<li
-					onClick={() =>
-						this.site(item, index)
-					}>
-					{item}
-				</li>
-			);
-		},
-	);
+  this.state.movies.map((item, index, arr) => {
+    return <li onClick={() => this.site(item, index)}>{item}</li>
+  })
 }
 // 可以通过各种方式来传递参数和函数,使得整个系统更加自由,清晰
 ```
@@ -111,12 +107,12 @@ While(right)当 right 有值 也就是不为空的时候执行,if() 则是当 ri
 
 ```js
 this.state.numbers
-	.filter(item => {
-		return item >= 30;
-	})
-	.map(item => {
-		return <li>{item}</li>;
-	});
+  .filter((item) => {
+    return item >= 30
+  })
+  .map((item) => {
+    return <li>{item}</li>
+  })
 ```
 
 forEach 则不是,他是对原数组进行操作遍历
