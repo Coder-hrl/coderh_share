@@ -1,9 +1,13 @@
+---
+title: React-redux
+---
+
 ## React-Redux
 
 > redux 为 React 单独创建了一个 React-redux
 >
 > ```js
-> import { Provider } from 'react-redux';
+> import { Provider } from 'react-redux'
 > ```
 >
 > `<Provider value="传入一个state"></Provider>`
@@ -11,7 +15,7 @@
 > 子函数有一个 connect 函数
 >
 > ```js
-> import { connect } from 'react-redux';
+> import { connect } from 'react-redux'
 > // 手动封装了一个connect函数
 > ```
 >
@@ -38,13 +42,10 @@
 放到 actionCreater 里面,进行使用
 
 ```js
-const dispatch = (
-	dispatch,
-	getState,
-) => {
-	//定义函数
-	dispatch();
-};
+const dispatch = (dispatch, getState) => {
+  //定义函数
+  dispatch()
+}
 ```
 
 ###### redux-saga
