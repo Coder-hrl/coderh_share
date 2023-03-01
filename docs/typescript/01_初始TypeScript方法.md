@@ -2,7 +2,7 @@
 title: TypeScript语法
 ---
 
-#### JavaScript 类型缺失
+## JavaScript 类型缺失
 
 > JavaScript 是一个非常灵活的语言,而 TypeScript 则带来类型校验,使我们在编写代码的时候 逻辑更加的清楚,后期不易出错,但是带来的学习成本和编写成本也是很高的
 >
@@ -20,7 +20,7 @@ title: TypeScript语法
 
 知识的不断更新,代表着在不断的喷薄发展
 
-#### 为什么需要 TypeScript?
+### 为什么需要 TypeScript?
 
 因为在编程开发中有一个共识,错误出现的越早越好
 
@@ -32,13 +32,13 @@ title: TypeScript语法
 
 在现网开发中,使用 TypeScript 可以很大程度的`防止程序意外崩掉`
 
-#### 编写程序的思想
+### 编写程序的思想
 
 在编写一个功能函数时,要考虑 undefined 的情况,ajax 失败的情况,null 的情况等其他情况,如时间需要转 moment 等其他方法,要三思后而后行
 
 编写一个可健壮,后期维护程度较低的程序,要保证里面所有的代码 都是自己所熟悉的,注释一定要有.
 
-#### 类型思维的缺失
+### 类型思维的缺失
 
 JavaScript 因为从设计之初就没有考虑约束问题,所以造成了前端关于类型思维的缺失
 
@@ -46,7 +46,7 @@ JavaScript 因为从设计之初就没有考虑约束问题,所以造成了前�
 
 同时项目越大,TypeScript 带来的好处,也会越来越大,健壮性也会越来越强
 
-#### TypeScript 可以理解为加强版的 JavaScript
+### TypeScript 可以理解为加强版的 JavaScript
 
 最终编译成 JavaScript,同时还做了一些语法的扩展,比如枚举和元组类型
 
@@ -54,7 +54,7 @@ JavaScript 因为从设计之初就没有考虑约束问题,所以造成了前�
 
 让 JavaScript 变的更安全,`始于JavaScript终于JavaScript`
 
-#### 哪些项目使用了 TypeScript
+### 哪些项目使用了 TypeScript
 
 1. antd
 2. vscode
@@ -64,7 +64,7 @@ JavaScript 因为从设计之初就没有考虑约束问题,所以造成了前�
 
 这些都表明了,TypeScript 是一个非常好用的工具
 
-#### 大前端的发展趋势
+### 大前端的发展趋势
 
 1. flutter React-native App 开发
 2. Vue React web 端开发
@@ -101,7 +101,7 @@ String 则是 JavaScript 中字符串的包装类
 Const 标志符: 数据类型 = 赋值
 
 ```ts
-const name: string = 'sajd';
+const name: string = 'sajd'
 ```
 
 #### 隐式推导 类型推导
