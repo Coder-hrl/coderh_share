@@ -23,5 +23,6 @@
     "vuepress": "^1.9.7",
     "vuepress-plugin-auto-sidebar": "^2.3.2",
     "vuepress-theme-reco": "^1.6.16"
-  }
+  },
+  "dependencies": {}
 }
