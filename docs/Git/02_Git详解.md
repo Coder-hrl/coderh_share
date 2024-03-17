@@ -186,4 +186,4 @@ git remote show origin
 
 ### git pull
 
-git pull 命令是以下命令的合集 git fetch + git merge
+git pull 命令是以下命令的合集 git fetch + git merge 
