@@ -75,3 +75,23 @@ git clone https://github.com/coder_hrl
 git log 
 ```
 
+**可以看见简洁的状态存在**
+
+```shell
+git status -s
+```
+
+**可以将文件从未跟踪，强制变为Unmodify的状态**  相当于  git add . 和 git commit -m
+
+```shell
+git commit -a -m ""
+```
+
+### git来进行忽略文件
+
+使用 以`.gitignore`文件来表现那些文件不需要进行跟踪，不希望git进行跟踪和管理文件
+
+被忽略掉的，一般都是**一些自动生成的文件，比如日志、编辑器自动生成的文件、nodeMoudle，build之后的文件**
+
+在实际开发中，这个文件通常不需要进行自己编写，在**Github**上存在很多忽略文件。
+
