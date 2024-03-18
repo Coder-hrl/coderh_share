@@ -102,3 +102,89 @@ git checkout v1.1
 ### Git提交对象 commit Object
 
 > 通过git commit 来拿到提交对象
+
+相信查看二进制的文件内容，必须要在objects文件才可以使用这个命令
+
+```shell
+git cat-file -p 00d2
+```
+
+通过git add 之后将文件暂存到暂存区
+
+通过git commit 之后将暂存区的文件
+
+每个提交对象中，**包含一个tree**，这个tree的地址**中包含了所有需要进行提交的对象**
+
+其中还包含了**指向它父对象的指针**，有多个分支合并产生的提交对象有多个父对象
+
+### HEAD
+
+git 是通过HEAD指针来判断当前在哪一个分支里面，我们可以通过以下命令来切换分支
+
+```shell
+git checkout master 
+```
+
+通过修改HEAD指针所在的位置来实现的
+
+### 为什么我们需要使用分支和Tag
+
+- 开发某个项目，在默认master分支进行开发
+- 不断地进行模块开发和bug完善
+- 到了某一个可以发布的版本，使用tag打一个标签
+
+使用以下命令来在当前标签创建一个新的分支
+
+```shell
+git switch -c  
+git checkout -b 
+git branch  
+```
+
+合并之后的代码是会存在多个Partent的，包括当前的分支（parent）和被合并的分支的parent
+
+### 查看分支和删除分支
+
+查看当前所有的分支
+
+```shell
+git branch 
+```
+
+同时查看每个分支的最后一次提交
+
+```shell
+git branch -v
+```
+
+查看所有合并到当前分支的分支
+
+```shell
+git branch --merged
+```
+
+查看所有没用合并到当前分支的分支
+
+```shell
+git branch --no-merged
+```
+
+移除分支
+
+```shell
+git branch -d <branc.name>
+```
+
+**分支本质上只是一个指针**
+
+分支存在的提交记录并不会被移除
+
+### 如果错误删除一个分支，如何恢复分支呢
+
+通过git reflog命令获取到之前删除分支的校验码
+
+```shell
+git reflog 
+git checkout -b <new.branch> <校验码>
+```
+
