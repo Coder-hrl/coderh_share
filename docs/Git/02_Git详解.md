@@ -1,3 +1,5 @@
+title: Git详解
+
 ## Git详解
 
 ### Git全局配置
@@ -75,13 +77,13 @@ git clone https://github.com/coder_hrl
 git log 
 ```
 
-**可以看见简洁的状态存在**
+**可以看见简洁的工作区状态存在**
 
 ```shell
 git status -s
 ```
 
-**可以将文件从未跟踪，强制变为Unmodify的状态**  相当于  git add . 和 git commit -m
+**可以将（已被跟踪过的文件）文件从被修改，强制变为Unmodify的状态**  相当于  git add . 和 git commit -m   **切换分支后的第一时间不可以使用，会显示**文件尚未被跟踪
 
 ```shell
 git commit -a -m ""

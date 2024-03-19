@@ -1,3 +1,5 @@
+title: Git工作流
+
 ## Git 工作流
 
 是实际开发中，会存在很多开放的分支的
@@ -60,3 +62,6 @@ git push --set-upstream origin develop
 git checkout develop 
 ```
 
+### 分支特点
+
+开发分支develop，生产分支master，hotFix分支，release分支和功能分支
